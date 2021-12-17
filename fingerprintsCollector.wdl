@@ -151,7 +151,6 @@ workflow fingerprintsCollector {
        hotspotVcf : "vcf file from GATK haplotype caller on provided hotspots",
        hotspotTbi : "index for the vcf hotspot fingerprint",
        hotspotFin : "fingerprint Fin file for the provided hotspots"
-
      }
   }
 
