@@ -148,6 +148,51 @@
         "type": "ALL"
       }
     },
+      "fingerprintsCollector.coverage": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.json": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.hotspotVcf": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.hotspotTbi": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.hotspotFin": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
     "validators": [
       {
         "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
@@ -306,6 +351,51 @@
         "type": "ALL"
       }
     },
+      "fingerprintsCollector.coverage": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.json": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.hotspotVcf": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.hotspotTbi": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.hotspotFin": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
     "validators": [
       {
         "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
@@ -456,6 +546,51 @@
         "type": "ALL"
       },
       "fingerprintsCollector.outputTbi": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.coverage": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.json": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.hotspotVcf": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.hotspotTbi": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.hotspotFin": {
         "contents": [
           {
             "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
@@ -622,6 +757,51 @@
         "type": "ALL"
       }
     },
+      "fingerprintsCollector.coverage": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.json": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.hotspotVcf": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.hotspotTbi": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.hotspotFin": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
     "validators": [
       {
         "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
@@ -780,6 +960,51 @@
         "type": "ALL"
       }
     },
+      "fingerprintsCollector.coverage": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.json": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.hotspotVcf": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.hotspotTbi": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.hotspotFin": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
     "validators": [
       {
         "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
@@ -933,6 +1158,51 @@
         "contents": [
           {
             "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WT_HG38_BAM@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.coverage": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.json": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.hotspotVcf": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.hotspotTbi": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+          }
+        ],
+        "type": "ALL"
+      }
+    },
+      "fingerprintsCollector.hotspotFin": {
+        "contents": [
+          {
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
