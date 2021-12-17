@@ -132,7 +132,7 @@ workflow fingerprintsCollector {
     meta {
      author: "Lawrence Heisler"
      email: "lawrence.heisler@oicr.on.ca"
-     description: "crosscheckFingerprintsCollector, workflow that generates genotype fingerprints using gatk ExtractFingprint.  Output are vcf files that can be proccessed through gatk Crosscheck fingerprints\n##"
+     description: "fingerprintsCollector, workflow that generates aligns reads to reference, then creates fingerprints using variousmethods. Output are fingerprints of various types and coverage statistics from the alignment\n##"
      dependencies: [
       {
         name: "gatk/4.2.0.0",
