@@ -104,7 +104,7 @@ workflow fingerprintsCollector {
      input:
         inputBam = select_first([markDuplicates.bam,bwaMem.bwaMemBam,star.starBam,bam]),
         inputBai = select_first([markDuplicates.bamIndex,bwaMem.bwaMemIndex,star.starIndex,bamIndex]),
-        hotspots = select_first([hotspots]),
+        hotspots = hotspots,
         refFasta = refFasta,
         outputFileNamePrefix = outputFileNamePrefix
    }
@@ -114,7 +114,7 @@ workflow fingerprintsCollector {
         inputVcf = generateFingerprint.vcf, 
         inputCoverage = generateFingerprint.depth, 
         sampleID = outputFileNamePrefix,
-        hotspotSNPs = select_first([hotspots])
+        hotspotSNPs = hotspots
    }
    
 
