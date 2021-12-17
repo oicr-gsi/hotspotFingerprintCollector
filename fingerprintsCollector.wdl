@@ -22,7 +22,7 @@ workflow fingerprintsCollector {
         String refFasta
         String haplotypeMap
         Int maxReads = 0
-        File? hotspots
+        String hotspots
    }
    
    parameter_meta {
