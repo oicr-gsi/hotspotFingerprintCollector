@@ -120,7 +120,7 @@
       "fingerprintsCollector.generateFingerprint.jobMemory" : null,
       "fingerprintsCollector.generateFingerprint.timeout" : null,	  
       "fingerprintsCollector.hotspots" : "/.mounts/labs/gsi/testdata/fingerprintsCollector/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
-      "fingerprintsCollector.runFinCreator.modules": "python/3.6,
+      "fingerprintsCollector.runFinCreator.modules" : "python/3.6",
       "fingerprintsCollector.runFinCreator.jobMemory" : null,
       "fingerprintsCollector.runFinCreator.timeout" : null
     },
@@ -276,7 +276,7 @@
       "fingerprintsCollector.generateFingerprint.jobMemory" : null,
       "fingerprintsCollector.generateFingerprint.timeout" : null,	  
       "fingerprintsCollector.hotspots" : "/.mounts/labs/gsi/testdata/fingerprintsCollector/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
-      "fingerprintsCollector.runFinCreator.modules": "python/3.6,
+      "fingerprintsCollector.runFinCreator.modules" : "python/3.6",
       "fingerprintsCollector.runFinCreator.jobMemory" : null,
       "fingerprintsCollector.runFinCreator.timeout" : null
     },
@@ -432,7 +432,7 @@
       "fingerprintsCollector.generateFingerprint.jobMemory" : null,
       "fingerprintsCollector.generateFingerprint.timeout" : null,	  
       "fingerprintsCollector.hotspots" : "/.mounts/labs/gsi/testdata/fingerprintsCollector/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
-      "fingerprintsCollector.runFinCreator.modules": "python/3.6,
+      "fingerprintsCollector.runFinCreator.modules" : "python/3.6",
       "fingerprintsCollector.runFinCreator.jobMemory" : null,
       "fingerprintsCollector.runFinCreator.timeout" : null
     },
@@ -588,7 +588,7 @@
       "fingerprintsCollector.generateFingerprint.jobMemory" : null,
       "fingerprintsCollector.generateFingerprint.timeout" : null,	  
       "fingerprintsCollector.hotspots" : "/.mounts/labs/gsi/testdata/fingerprintsCollector/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
-      "fingerprintsCollector.runFinCreator.modules": "python/3.6,
+      "fingerprintsCollector.runFinCreator.modules" : "python/3.6",
       "fingerprintsCollector.runFinCreator.jobMemory" : null,
       "fingerprintsCollector.runFinCreator.timeout" : null
     },
@@ -744,7 +744,7 @@
       "fingerprintsCollector.generateFingerprint.jobMemory" : null,
       "fingerprintsCollector.generateFingerprint.timeout" : null,	  
       "fingerprintsCollector.hotspots" : "/.mounts/labs/gsi/testdata/fingerprintsCollector/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
-      "fingerprintsCollector.runFinCreator.modules": "python/3.6,
+      "fingerprintsCollector.runFinCreator.modules" : "python/3.6",
       "fingerprintsCollector.runFinCreator.jobMemory" : null,
       "fingerprintsCollector.runFinCreator.timeout" : null
     },
@@ -900,7 +900,7 @@
       "fingerprintsCollector.generateFingerprint.jobMemory" : null,
       "fingerprintsCollector.generateFingerprint.timeout" : null,	  
       "fingerprintsCollector.hotspots" : "/.mounts/labs/gsi/testdata/fingerprintsCollector/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
-      "fingerprintsCollector.runFinCreator.modules": "python/3.6,
+      "fingerprintsCollector.runFinCreator.modules" : "python/3.6",
       "fingerprintsCollector.runFinCreator.jobMemory" : null,
       "fingerprintsCollector.runFinCreator.timeout" : null
     },
