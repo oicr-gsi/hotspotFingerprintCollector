@@ -9,7 +9,7 @@ struct InputGroup {
   String readGroup
 }
 
-workflow fingerprintsCollector {
+workflow hotspotFingerprintCollector {
    input {
         File? fastqR1
         File? fastqR2
@@ -91,14 +91,6 @@ workflow fingerprintsCollector {
         outputFileNamePrefix = outputFileNamePrefix  
    }
    
-   call extractFingerprint {
-     input:
-        inputBam = select_first([markDuplicates.bam,bwaMem.bwaMemBam,star.starBam,bam]),
-        inputBai = select_first([markDuplicates.bamIndex,bwaMem.bwaMemIndex,star.starIndex,bamIndex]),
-        haplotypeMap = haplotypeMap,
-        refFasta = refFasta,
-        outputFileNamePrefix = outputFileNamePrefix
-    }
 
    call generateFingerprint {
      input:
@@ -120,8 +112,6 @@ workflow fingerprintsCollector {
 
 
    output {
-      File outputVcf = extractFingerprint.vgz
-      File outputTbi = extractFingerprint.tbi
       File coverage = assessCoverage.coverage
       File json = assessCoverage.json
       File hotspotVcf = generateFingerprint.vgz
@@ -155,60 +145,6 @@ workflow fingerprintsCollector {
   }
 
 }
-# ==========================================
-#  configure and run extractFingerprintsCollector
-# ==========================================
-
-
-task extractFingerprint {
-input {
- File inputBam
- File inputBai
- String modules
- String refFasta
- String outputFileNamePrefix
- String haplotypeMap
- Int jobMemory = 8
- Int timeout = 24
-}
-parameter_meta {
- inputBam: "input .bam file"
- inputBai: "index of the input .bam file"
- refFasta: "Path to reference FASTA file"
- outputFileNamePrefix: "prefix for making names for output files"
- haplotypeMap: "Hotspot SNPs are the locations of variants used for genotyping"
- jobMemory: "memory allocated for Job"
- modules: "Names and versions of modules"
- timeout: "Timeout in hours, needed to override imposed limits"
-}
-
-command <<<
-  set -euo pipefail
-
- $GATK_ROOT/bin/gatk ExtractFingerprint \
-                    -R ~{refFasta} \
-                    -H ~{haplotypeMap} \
-                    -I ~{inputBam} \
-                    -O ~{outputFileNamePrefix}.vcf
- $TABIX_ROOT/bin/bgzip -c ~{outputFileNamePrefix}.vcf > ~{outputFileNamePrefix}.vcf.gz
- $TABIX_ROOT/bin/tabix -p vcf ~{outputFileNamePrefix}.vcf.gz 
-
-
->>>
-
- runtime {
-  memory:  "~{jobMemory} GB"
-  modules: "~{modules}"
-  timeout: "~{timeout}"
- }
-
- output {
-  File vcf = "~{outputFileNamePrefix}.vcf"
-  File vgz = "~{outputFileNamePrefix}.vcf.gz"
-  File tbi = "~{outputFileNamePrefix}.vcf.gz.tbi"
- }
-}
-
 
 
 # ==========================================
@@ -535,4 +471,3 @@ runtime {
   File fin = "~{sampleID}.fin"
  }
 }
-
