@@ -20,7 +20,6 @@ workflow hotspotFingerprintCollector {
         String markDups
         String outputFileNamePrefix
         String refFasta
-        String haplotypeMap
         Int maxReads = 0
         String hotspots
    }
@@ -35,7 +34,6 @@ workflow hotspotFingerprintCollector {
         markDups : "should the alignment be duplicate marked?, generally yes"
         outputFileNamePrefix: "Optional output prefix for the output"
         refFasta: "Path to the reference fasta file"
-        haplotypeMap: "Path to the gzipped hotspot vcf file"
         maxReads: "The maximum number of reads to process; if set, this will sample the requested number of reads"
 		hotspots: "hotspot file for generateFingerprints"
    }

@@ -1,11 +1,11 @@
 [
   {
     "id": "TEST_0001_WG_HG38_FASTQ_INPUT",
-    "description": "runs the fingerprintsCollector workflow on a WG library using hg38, with fastq as input",
+    "description": "runs the hotspotFingerprintsCollector workflow on a WG library using hg38, with fastq as input",
     "arguments": {
-      "fingerprintsCollector.fastqR1": {
+      "hotspotFingerprintsCollector.fastqR1": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/fingerprintsCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R1.fastq.gz",
+          "configuration": "/.mounts/labs/gsi/testdata/crosscheckFingerprintsCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R1.fastq.gz",
           "externalIds": [
             {
               "id": "TEST",
@@ -15,9 +15,9 @@
         },
         "type": "EXTERNAL"
       },
-      "fingerprintsCollector.fastqR2": {
+      "hotspotFingerprintsCollector.fastqR2": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/fingerprintsCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R2.fastq.gz",
+          "configuration": "/.mounts/labs/gsi/testdata/crosscheckFingerprintsCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R2.fastq.gz",
           "externalIds": [
             {
               "id": "TEST",
@@ -27,162 +27,142 @@
         },
         "type": "EXTERNAL"
       },
-      "fingerprintsCollector.inputType": "fastq",
-      "fingerprintsCollector.haplotypeMap": "/.mounts/labs/gsi/modulator/sw/data/fingerprints-haplotype-map-20210315/oicr_hg38_chr.map",
-      "fingerprintsCollector.outputFileNamePrefix": "TEST_0001_WG_HG38_FASTQ",
-      "fingerprintsCollector.aligner": "bwa",
-      "fingerprintsCollector.markDups" : "true",
-      "fingerprintsCollector.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg38-p12/hg38_random.fa",
-      "fingerprintsCollector.bwaMem.runBwaMem_modules": "samtools/1.9 bwa/0.7.12 hg38-bwa-index-with-alt/0.7.12",
-      "fingerprintsCollector.bwaMem.runBwaMem_bwaRef": "/.mounts/labs/gsi/modulator/sw/data/hg38-bwa-index-with-alt-0.7.12/hg38_random.fa",
-      "fingerprintsCollector.bwaMem.adapterTrimmingLog_timeout": null,
-      "fingerprintsCollector.bwaMem.adapterTrimmingLog_jobMemory": null,
-      "fingerprintsCollector.bwaMem.indexBam_timeout": null,
-      "fingerprintsCollector.bwaMem.indexBam_modules": null,
-      "fingerprintsCollector.bwaMem.indexBam_jobMemory": null,
-      "fingerprintsCollector.bwaMem.bamMerge_timeout": null,
-      "fingerprintsCollector.bwaMem.bamMerge_modules": null,
-      "fingerprintsCollector.bwaMem.bamMerge_jobMemory": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_timeout": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_jobMemory": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_threads": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_timeout": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_jobMemory": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_modules": null,
-      "fingerprintsCollector.bwaMem.slicerR2_timeout": null,
-      "fingerprintsCollector.bwaMem.slicerR2_jobMemory": null,
-      "fingerprintsCollector.bwaMem.slicerR2_modules": null,
-      "fingerprintsCollector.bwaMem.slicerR1_timeout": null,
-      "fingerprintsCollector.bwaMem.slicerR1_jobMemory": null,
-      "fingerprintsCollector.bwaMem.slicerR1_modules": null,
-      "fingerprintsCollector.bwaMem.countChunkSize_timeout": null,
-      "fingerprintsCollector.bwaMem.countChunkSize_jobMemory": null,
-      "fingerprintsCollector.bwaMem.readGroups": null,
-      "fingerprintsCollector.bwaMem.outputFileNamePrefix": null,
-      "fingerprintsCollector.bwaMem.numChunk": null,
-      "fingerprintsCollector.bwaMem.doTrim": null,
-      "fingerprintsCollector.bwaMem.trimMinLength": null,
-      "fingerprintsCollector.bwaMem.trimMinQuality": null,
-      "fingerprintsCollector.bwaMem.adapter1": null,
-      "fingerprintsCollector.bwaMem.adapter2": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_addParam": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_addParam": null,
-      "fingerprintsCollector.extractFingerprint.modules": "gatk/4.2.0.0 tabix/0.2.6 hg38/p12",
-      "fingerprintsCollector.extractFingerprint.jobMemory": null,
-      "fingerprintsCollector.extractFingerprint.timeout": null,
-      "fingerprintsCollector.bam": null,
-      "fingerprintsCollector.bamIndex": null,
-      "fingerprintsCollector.star.runStar_modules" : "star/2.7.3a hg38-star-index100/2.7.3a",
-      "fingerprintsCollector.star.runStar_genomeIndexDir" : "/.mounts/labs/gsi/modulator/sw/data/hg38-star-index100-2.7.3a",
-      "fingerprintsCollector.star.outputFileNamePrefix": null,
-      "fingerprintsCollector.star.runStar_addParam": null,
-      "fingerprintsCollector.star.runStar_alignIntMax": null,
-      "fingerprintsCollector.star.runStar_alignMatGapMax": null,
-      "fingerprintsCollector.star.runStar_alignSJDBOvMin": null,
-      "fingerprintsCollector.star.runStar_chimJunOvMin": null,
-      "fingerprintsCollector.star.runStar_chimMulmapNmax": null,
-      "fingerprintsCollector.star.runStar_chimMulmapScoRan": null,
-      "fingerprintsCollector.star.runStar_chimNonchimScoDMin": null,
-      "fingerprintsCollector.star.runStar_chimOutJunForm": null,
-      "fingerprintsCollector.star.runStar_chimOutType": null,
-      "fingerprintsCollector.star.runStar_chimScoJunNonGTAG": null,
-      "fingerprintsCollector.star.runStar_chimScoreDropMax": null,
-      "fingerprintsCollector.star.runStar_chimScoreSeparation": null,
-      "fingerprintsCollector.star.runStar_chimSegmentReadGapMax": null,
-      "fingerprintsCollector.star.runStar_chimSegmin": null,
-      "fingerprintsCollector.star.runStar_chimericjunctionSuffix": null,
-      "fingerprintsCollector.star.runStar_genereadSuffix": null,
-      "fingerprintsCollector.star.runStar_jobMemory": null,
-      "fingerprintsCollector.star.runStar_multiMax": null,
-      "fingerprintsCollector.star.runStar_outFilterMultimapNmax": null,
-      "fingerprintsCollector.star.runStar_peOvMMp": null,
-      "fingerprintsCollector.star.runStar_peOvNbasesMin": null,
-      "fingerprintsCollector.star.runStar_saSparsed": null,
-      "fingerprintsCollector.star.runStar_starSuffix": null,
-      "fingerprintsCollector.star.runStar_threads": null,
-      "fingerprintsCollector.star.runStar_timeout": null,
-      "fingerprintsCollector.star.runStar_transcriptomeSuffix": null,
-      "fingerprintsCollector.star.runStar_uniqMAPQ": null,
-      "fingerprintsCollector.star.indexBam_modules" : null,
-      "fingerprintsCollector.star.indexBam_timeout" : null,
-      "fingerprintsCollector.star.indexBam_jobMemory" : null,
-      "fingerprintsCollector.maxReads" : null,
-      "fingerprintsCollector.downsample.modules" : "seqtk/1.3",
-      "fingerprintsCollector.downsample.jobMemory" : null,
-      "fingerprintsCollector.downsample.timeout" : null,
-      "fingerprintsCollector.markDuplicates.modules" : "gatk/4.2.0.0",
-      "fingerprintsCollector.markDuplicates.jobMemory" : null,
-      "fingerprintsCollector.markDuplicates.timeout" : null,
-      "fingerprintsCollector.assessCoverage.modules" : "samtools/1.14",
-      "fingerprintsCollector.assessCoverage.jobMemory" : null,
-      "fingerprintsCollector.assessCoverage.timeout" : null,
-      "fingerprintsCollector.generateFingerprint.modules" : "gatk/4.2.0.0 tabix/0.2.6 hg38/p12",
-      "fingerprintsCollector.generateFingerprint.jobMemory" : null,
-      "fingerprintsCollector.generateFingerprint.timeout" : null,
-      "fingerprintsCollector.generateFingerprint.stdCC" : null,	  
-      "fingerprintsCollector.hotspots" : "/.mounts/labs/gsi/testdata/fingerprintsCollector/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
-      "fingerprintsCollector.runFinCreator.modules" : "python/3.6",
-      "fingerprintsCollector.runFinCreator.chroms" : null,
-      "fingerprintsCollector.runFinCreator.jobMemory" : null,
-      "fingerprintsCollector.runFinCreator.timeout" : null
+      "hotspotFingerprintsCollector.inputType": "fastq",
+      "hotspotFingerprintsCollector.outputFileNamePrefix": "TEST_0001_WG_HG38_FASTQ",
+      "hotspotFingerprintsCollector.aligner": "bwa",
+      "hotspotFingerprintsCollector.markDups" : "true",
+      "hotspotFingerprintsCollector.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg38-p12/hg38_random.fa",
+      "hotspotFingerprintsCollector.bwaMem.runBwaMem_modules": "samtools/1.9 bwa/0.7.12 hg38-bwa-index-with-alt/0.7.12",
+      "hotspotFingerprintsCollector.bwaMem.runBwaMem_bwaRef": "/.mounts/labs/gsi/modulator/sw/data/hg38-bwa-index-with-alt-0.7.12/hg38_random.fa",
+      "hotspotFingerprintsCollector.bwaMem.adapterTrimmingLog_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.adapterTrimmingLog_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.indexBam_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.indexBam_modules": null,
+      "hotspotFingerprintsCollector.bwaMem.indexBam_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.bamMerge_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.bamMerge_modules": null,
+      "hotspotFingerprintsCollector.bwaMem.bamMerge_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.runBwaMem_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.runBwaMem_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.runBwaMem_threads": null,
+      "hotspotFingerprintsCollector.bwaMem.adapterTrimming_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.adapterTrimming_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.adapterTrimming_modules": null,
+      "hotspotFingerprintsCollector.bwaMem.slicerR2_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.slicerR2_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.slicerR2_modules": null,
+      "hotspotFingerprintsCollector.bwaMem.slicerR1_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.slicerR1_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.slicerR1_modules": null,
+      "hotspotFingerprintsCollector.bwaMem.countChunkSize_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.countChunkSize_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.readGroups": null,
+      "hotspotFingerprintsCollector.bwaMem.outputFileNamePrefix": null,
+      "hotspotFingerprintsCollector.bwaMem.numChunk": null,
+      "hotspotFingerprintsCollector.bwaMem.doTrim": null,
+      "hotspotFingerprintsCollector.bwaMem.trimMinLength": null,
+      "hotspotFingerprintsCollector.bwaMem.trimMinQuality": null,
+      "hotspotFingerprintsCollector.bwaMem.adapter1": null,
+      "hotspotFingerprintsCollector.bwaMem.adapter2": null,
+      "hotspotFingerprintsCollector.bwaMem.runBwaMem_addParam": null,
+      "hotspotFingerprintsCollector.bwaMem.adapterTrimming_addParam": null,
+      "hotspotFingerprintsCollector.bam": null,
+      "hotspotFingerprintsCollector.bamIndex": null,
+      "hotspotFingerprintsCollector.star.runStar_modules" : "star/2.7.3a hg38-star-index100/2.7.3a",
+      "hotspotFingerprintsCollector.star.runStar_genomeIndexDir" : "/.mounts/labs/gsi/modulator/sw/data/hg38-star-index100-2.7.3a",
+      "hotspotFingerprintsCollector.star.outputFileNamePrefix": null,
+      "hotspotFingerprintsCollector.star.runStar_addParam": null,
+      "hotspotFingerprintsCollector.star.runStar_alignIntMax": null,
+      "hotspotFingerprintsCollector.star.runStar_alignMatGapMax": null,
+      "hotspotFingerprintsCollector.star.runStar_alignSJDBOvMin": null,
+      "hotspotFingerprintsCollector.star.runStar_chimJunOvMin": null,
+      "hotspotFingerprintsCollector.star.runStar_chimMulmapNmax": null,
+      "hotspotFingerprintsCollector.star.runStar_chimMulmapScoRan": null,
+      "hotspotFingerprintsCollector.star.runStar_chimNonchimScoDMin": null,
+      "hotspotFingerprintsCollector.star.runStar_chimOutJunForm": null,
+      "hotspotFingerprintsCollector.star.runStar_chimOutType": null,
+      "hotspotFingerprintsCollector.star.runStar_chimScoJunNonGTAG": null,
+      "hotspotFingerprintsCollector.star.runStar_chimScoreDropMax": null,
+      "hotspotFingerprintsCollector.star.runStar_chimScoreSeparation": null,
+      "hotspotFingerprintsCollector.star.runStar_chimSegmentReadGapMax": null,
+      "hotspotFingerprintsCollector.star.runStar_chimSegmin": null,
+      "hotspotFingerprintsCollector.star.runStar_chimericjunctionSuffix": null,
+      "hotspotFingerprintsCollector.star.runStar_genereadSuffix": null,
+      "hotspotFingerprintsCollector.star.runStar_jobMemory": null,
+      "hotspotFingerprintsCollector.star.runStar_multiMax": null,
+      "hotspotFingerprintsCollector.star.runStar_outFilterMultimapNmax": null,
+      "hotspotFingerprintsCollector.star.runStar_peOvMMp": null,
+      "hotspotFingerprintsCollector.star.runStar_peOvNbasesMin": null,
+      "hotspotFingerprintsCollector.star.runStar_saSparsed": null,
+      "hotspotFingerprintsCollector.star.runStar_starSuffix": null,
+      "hotspotFingerprintsCollector.star.runStar_threads": null,
+      "hotspotFingerprintsCollector.star.runStar_timeout": null,
+      "hotspotFingerprintsCollector.star.runStar_transcriptomeSuffix": null,
+      "hotspotFingerprintsCollector.star.runStar_uniqMAPQ": null,
+      "hotspotFingerprintsCollector.star.indexBam_modules" : null,
+      "hotspotFingerprintsCollector.star.indexBam_timeout" : null,
+      "hotspotFingerprintsCollector.star.indexBam_jobMemory" : null,
+      "hotspotFingerprintsCollector.maxReads" : null,
+      "hotspotFingerprintsCollector.downsample.modules" : "seqtk/1.3",
+      "hotspotFingerprintsCollector.downsample.jobMemory" : null,
+      "hotspotFingerprintsCollector.downsample.timeout" : null,
+      "hotspotFingerprintsCollector.markDuplicates.modules" : "gatk/4.2.0.0",
+      "hotspotFingerprintsCollector.markDuplicates.jobMemory" : null,
+      "hotspotFingerprintsCollector.markDuplicates.timeout" : null,
+      "hotspotFingerprintsCollector.assessCoverage.modules" : "samtools/1.14",
+      "hotspotFingerprintsCollector.assessCoverage.jobMemory" : null,
+      "hotspotFingerprintsCollector.assessCoverage.timeout" : null,
+      "hotspotFingerprintsCollector.generateFingerprint.modules" : "gatk/4.2.0.0 tabix/0.2.6 hg38/p12",
+      "hotspotFingerprintsCollector.generateFingerprint.jobMemory" : null,
+      "hotspotFingerprintsCollector.generateFingerprint.timeout" : null,
+      "hotspotFingerprintsCollector.generateFingerprint.stdCC" : null,	  
+      "hotspotFingerprintsCollector.hotspots" : "/.mounts/labs/gsi/testdata/fingerprintsCollector/dbsnp137.hg38p12.402.overlap.vcf.gz",
+      "hotspotFingerprintsCollector.runFinCreator.modules" : "python/3.6",
+      "hotspotFingerprintsCollector.runFinCreator.chroms" : null,
+      "hotspotFingerprintsCollector.runFinCreator.jobMemory" : null,
+      "hotspotFingerprintsCollector.runFinCreator.timeout" : null
     },
     "engineArguments": {
       "write_to_cache": false,
       "read_from_cache": false
     },
     "metadata": {
-      "fingerprintsCollector.outputVcf": {
+      "hotspotFingerprintsCollector.coverage": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
       },
-      "fingerprintsCollector.outputTbi": {
+      "hotspotFingerprintsCollector.json": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
       },
-      "fingerprintsCollector.coverage": {
+      "hotspotFingerprintsCollector.hotspotVcf": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
       },
-      "fingerprintsCollector.json": {
+      "hotspotFingerprintsCollector.hotspotTbi": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
       },
-      "fingerprintsCollector.hotspotVcf": {
+      "hotspotFingerprintsCollector.hotspotFin": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.hotspotTbi": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.hotspotFin": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
@@ -192,216 +172,18 @@
       {
         "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
         "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-        "output_metrics": "/.mounts/labs/gsi/testdata/fingerprintsCollector/output_expectation/TEST_0001_WG_HG38_FASTQ_INPUT.metrics",
-        "type": "script"
-      }
-    ]
-  },
-  {
-    "id": "TEST_0001_WT_HG38_FASTQ_INPUT",
-    "description": "runs the fingerprintsCollector workflow on a WT library using hg38, with fastq as input, star as aligner",
-    "arguments": {
-      "fingerprintsCollector.fastqR1": {
-        "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/fingerprintsCollector/input_data/TEST_0001_WT_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R1.fastq.gz",
-          "externalIds": [
-            {
-              "id": "TEST",
-              "provider": "TEST"
-            }
-          ]
-        },
-        "type": "EXTERNAL"
-      },
-      "fingerprintsCollector.fastqR2": {
-        "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/fingerprintsCollector/input_data/TEST_0001_WT_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R2.fastq.gz",
-          "externalIds": [
-            {
-              "id": "TEST",
-              "provider": "TEST"
-            }
-          ]
-        },
-        "type": "EXTERNAL"
-      },
-      "fingerprintsCollector.inputType": "fastq",
-      "fingerprintsCollector.haplotypeMap": "/.mounts/labs/gsi/modulator/sw/data/fingerprints-haplotype-map-20210315/oicr_hg38_chr.map",
-      "fingerprintsCollector.outputFileNamePrefix": "TEST_0001_WT_HG38_FASTQ",
-      "fingerprintsCollector.aligner": "star",
-      "fingerprintsCollector.markDups" : "true",
-      "fingerprintsCollector.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg38-p12/hg38_random.fa",
-      "fingerprintsCollector.bwaMem.runBwaMem_modules": "samtools/1.9 bwa/0.7.12 hg38-bwa-index-with-alt/0.7.12",
-      "fingerprintsCollector.bwaMem.runBwaMem_bwaRef": "/.mounts/labs/gsi/modulator/sw/data/hg38-bwa-index-with-alt-0.7.12/hg38_random.fa",
-      "fingerprintsCollector.bwaMem.adapterTrimmingLog_timeout": null,
-      "fingerprintsCollector.bwaMem.adapterTrimmingLog_jobMemory": null,
-      "fingerprintsCollector.bwaMem.indexBam_timeout": null,
-      "fingerprintsCollector.bwaMem.indexBam_modules": null,
-      "fingerprintsCollector.bwaMem.indexBam_jobMemory": null,
-      "fingerprintsCollector.bwaMem.bamMerge_timeout": null,
-      "fingerprintsCollector.bwaMem.bamMerge_modules": null,
-      "fingerprintsCollector.bwaMem.bamMerge_jobMemory": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_timeout": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_jobMemory": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_threads": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_timeout": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_jobMemory": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_modules": null,
-      "fingerprintsCollector.bwaMem.slicerR2_timeout": null,
-      "fingerprintsCollector.bwaMem.slicerR2_jobMemory": null,
-      "fingerprintsCollector.bwaMem.slicerR2_modules": null,
-      "fingerprintsCollector.bwaMem.slicerR1_timeout": null,
-      "fingerprintsCollector.bwaMem.slicerR1_jobMemory": null,
-      "fingerprintsCollector.bwaMem.slicerR1_modules": null,
-      "fingerprintsCollector.bwaMem.countChunkSize_timeout": null,
-      "fingerprintsCollector.bwaMem.countChunkSize_jobMemory": null,
-      "fingerprintsCollector.bwaMem.readGroups": null,
-      "fingerprintsCollector.bwaMem.outputFileNamePrefix": null,
-      "fingerprintsCollector.bwaMem.numChunk": null,
-      "fingerprintsCollector.bwaMem.doTrim": null,
-      "fingerprintsCollector.bwaMem.trimMinLength": null,
-      "fingerprintsCollector.bwaMem.trimMinQuality": null,
-      "fingerprintsCollector.bwaMem.adapter1": null,
-      "fingerprintsCollector.bwaMem.adapter2": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_addParam": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_addParam": null,
-      "fingerprintsCollector.extractFingerprint.modules": "gatk/4.2.0.0 tabix/0.2.6 hg38/p12",
-      "fingerprintsCollector.extractFingerprint.jobMemory": null,
-      "fingerprintsCollector.extractFingerprint.timeout": null,
-      "fingerprintsCollector.bam": null,
-      "fingerprintsCollector.bamIndex": null,
-      "fingerprintsCollector.star.runStar_modules" : "star/2.7.3a hg38-star-index100/2.7.3a",
-      "fingerprintsCollector.star.runStar_genomeIndexDir" : "/.mounts/labs/gsi/modulator/sw/data/hg38-star-index100-2.7.3a",
-      "fingerprintsCollector.star.outputFileNamePrefix": null,
-      "fingerprintsCollector.star.runStar_addParam": null,
-      "fingerprintsCollector.star.runStar_alignIntMax": null,
-      "fingerprintsCollector.star.runStar_alignMatGapMax": null,
-      "fingerprintsCollector.star.runStar_alignSJDBOvMin": null,
-      "fingerprintsCollector.star.runStar_chimJunOvMin": null,
-      "fingerprintsCollector.star.runStar_chimMulmapNmax": null,
-      "fingerprintsCollector.star.runStar_chimMulmapScoRan": null,
-      "fingerprintsCollector.star.runStar_chimNonchimScoDMin": null,
-      "fingerprintsCollector.star.runStar_chimOutJunForm": null,
-      "fingerprintsCollector.star.runStar_chimOutType": null,
-      "fingerprintsCollector.star.runStar_chimScoJunNonGTAG": null,
-      "fingerprintsCollector.star.runStar_chimScoreDropMax": null,
-      "fingerprintsCollector.star.runStar_chimScoreSeparation": null,
-      "fingerprintsCollector.star.runStar_chimSegmentReadGapMax": null,
-      "fingerprintsCollector.star.runStar_chimSegmin": null,
-      "fingerprintsCollector.star.runStar_chimericjunctionSuffix": null,
-      "fingerprintsCollector.star.runStar_genereadSuffix": null,
-      "fingerprintsCollector.star.runStar_jobMemory": null,
-      "fingerprintsCollector.star.runStar_multiMax": null,
-      "fingerprintsCollector.star.runStar_outFilterMultimapNmax": null,
-      "fingerprintsCollector.star.runStar_peOvMMp": null,
-      "fingerprintsCollector.star.runStar_peOvNbasesMin": null,
-      "fingerprintsCollector.star.runStar_saSparsed": null,
-      "fingerprintsCollector.star.runStar_starSuffix": null,
-      "fingerprintsCollector.star.runStar_threads": null,
-      "fingerprintsCollector.star.runStar_timeout": null,
-      "fingerprintsCollector.star.runStar_transcriptomeSuffix": null,
-      "fingerprintsCollector.star.runStar_uniqMAPQ": null,
-      "fingerprintsCollector.star.indexBam_modules" : null,
-      "fingerprintsCollector.star.indexBam_timeout" : null,
-      "fingerprintsCollector.star.indexBam_jobMemory" : null,
-      "fingerprintsCollector.maxReads" : null,
-      "fingerprintsCollector.downsample.modules" : "seqtk/1.3",
-      "fingerprintsCollector.downsample.jobMemory" : null,
-      "fingerprintsCollector.downsample.timeout" : null,
-      "fingerprintsCollector.markDuplicates.modules" : "gatk/4.2.0.0",
-      "fingerprintsCollector.markDuplicates.jobMemory" : null,
-      "fingerprintsCollector.markDuplicates.timeout" : null,
-      "fingerprintsCollector.assessCoverage.modules" : "samtools/1.14",
-      "fingerprintsCollector.assessCoverage.jobMemory" : null,
-      "fingerprintsCollector.assessCoverage.timeout" : null,
-      "fingerprintsCollector.generateFingerprint.modules" : "gatk/4.2.0.0 tabix/0.2.6 hg38/p12",
-      "fingerprintsCollector.generateFingerprint.jobMemory" : null,
-      "fingerprintsCollector.generateFingerprint.timeout" : null,
-      "fingerprintsCollector.generateFingerprint.stdCC" : null,  
-      "fingerprintsCollector.hotspots" : "/.mounts/labs/gsi/testdata/fingerprintsCollector/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
-      "fingerprintsCollector.runFinCreator.modules" : "python/3.6",
-      "fingerprintsCollector.runFinCreator.chroms" : null,
-      "fingerprintsCollector.runFinCreator.jobMemory" : null,
-      "fingerprintsCollector.runFinCreator.timeout" : null
-    },
-    "engineArguments": {
-      "write_to_cache": false,
-      "read_from_cache": false
-    },
-    "metadata": {
-      "fingerprintsCollector.outputVcf": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.outputTbi": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.coverage": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.json": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.hotspotVcf": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.hotspotTbi": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.hotspotFin": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      }
-   },
-    "validators": [
-      {
-        "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
-        "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-        "output_metrics": "/.mounts/labs/gsi/testdata/fingerprintsCollector/output_expectation/TEST_0001_WT_HG38_FASTQ_STAR_INPUT.metrics",
+        "output_metrics": "/.mounts/labs/gsi/testdata/hotspotFingerprintsCollector/output_expectation/TEST_0001_WG_HG38_FASTQ_INPUT.metrics",
         "type": "script"
       }
     ]
   },
   {
     "id": "TEST_0001_WG_HG38_FASTQ_INPUT_MAXREADS",
-    "description": "runs the fingerprintsCollector workflow on a WG library using hg38, with fastq as input, downsample to 50000 reads",
+    "description": "runs the hotspotFingerprintsCollector workflow on a WG library using hg38, with fastq as input, downsample to 50000 reads",
     "arguments": {
-      "fingerprintsCollector.fastqR1": {
+      "hotspotFingerprintsCollector.fastqR1": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/fingerprintsCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R1.fastq.gz",
+          "configuration": "/.mounts/labs/gsi/testdata/crosscheckFingerprintsCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R1.fastq.gz",
           "externalIds": [
             {
               "id": "TEST",
@@ -411,9 +193,9 @@
         },
         "type": "EXTERNAL"
       },
-      "fingerprintsCollector.fastqR2": {
+      "hotspotFingerprintsCollector.fastqR2": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/fingerprintsCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R2.fastq.gz",
+          "configuration": "/.mounts/labs/gsi/testdata/crosscheckFingerprintsCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R2.fastq.gz",
           "externalIds": [
             {
               "id": "TEST",
@@ -423,162 +205,142 @@
         },
         "type": "EXTERNAL"
       },
-      "fingerprintsCollector.inputType": "fastq",
-      "fingerprintsCollector.haplotypeMap": "/.mounts/labs/gsi/modulator/sw/data/fingerprints-haplotype-map-20210315/oicr_hg38_chr.map",
-      "fingerprintsCollector.outputFileNamePrefix": "TEST_0001_WG_HG38_FASTQ",
-      "fingerprintsCollector.aligner": "bwa",
-      "fingerprintsCollector.markDups" : "true",
-      "fingerprintsCollector.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg38-p12/hg38_random.fa",
-      "fingerprintsCollector.bwaMem.runBwaMem_modules": "samtools/1.9 bwa/0.7.12 hg38-bwa-index-with-alt/0.7.12",
-      "fingerprintsCollector.bwaMem.runBwaMem_bwaRef": "/.mounts/labs/gsi/modulator/sw/data/hg38-bwa-index-with-alt-0.7.12/hg38_random.fa",
-      "fingerprintsCollector.bwaMem.adapterTrimmingLog_timeout": null,
-      "fingerprintsCollector.bwaMem.adapterTrimmingLog_jobMemory": null,
-      "fingerprintsCollector.bwaMem.indexBam_timeout": null,
-      "fingerprintsCollector.bwaMem.indexBam_modules": null,
-      "fingerprintsCollector.bwaMem.indexBam_jobMemory": null,
-      "fingerprintsCollector.bwaMem.bamMerge_timeout": null,
-      "fingerprintsCollector.bwaMem.bamMerge_modules": null,
-      "fingerprintsCollector.bwaMem.bamMerge_jobMemory": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_timeout": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_jobMemory": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_threads": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_timeout": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_jobMemory": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_modules": null,
-      "fingerprintsCollector.bwaMem.slicerR2_timeout": null,
-      "fingerprintsCollector.bwaMem.slicerR2_jobMemory": null,
-      "fingerprintsCollector.bwaMem.slicerR2_modules": null,
-      "fingerprintsCollector.bwaMem.slicerR1_timeout": null,
-      "fingerprintsCollector.bwaMem.slicerR1_jobMemory": null,
-      "fingerprintsCollector.bwaMem.slicerR1_modules": null,
-      "fingerprintsCollector.bwaMem.countChunkSize_timeout": null,
-      "fingerprintsCollector.bwaMem.countChunkSize_jobMemory": null,
-      "fingerprintsCollector.bwaMem.readGroups": null,
-      "fingerprintsCollector.bwaMem.outputFileNamePrefix": null,
-      "fingerprintsCollector.bwaMem.numChunk": null,
-      "fingerprintsCollector.bwaMem.doTrim": null,
-      "fingerprintsCollector.bwaMem.trimMinLength": null,
-      "fingerprintsCollector.bwaMem.trimMinQuality": null,
-      "fingerprintsCollector.bwaMem.adapter1": null,
-      "fingerprintsCollector.bwaMem.adapter2": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_addParam": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_addParam": null,
-      "fingerprintsCollector.extractFingerprint.modules": "gatk/4.2.0.0 tabix/0.2.6 hg38/p12",
-      "fingerprintsCollector.extractFingerprint.jobMemory": null,
-      "fingerprintsCollector.extractFingerprint.timeout": null,
-      "fingerprintsCollector.bam": null,
-      "fingerprintsCollector.bamIndex": null,
-      "fingerprintsCollector.star.runStar_modules" : "star/2.7.3a hg38-star-index100/2.7.3a",
-      "fingerprintsCollector.star.runStar_genomeIndexDir" : "/.mounts/labs/gsi/modulator/sw/data/hg38-star-index100-2.7.3a",
-      "fingerprintsCollector.star.outputFileNamePrefix": null,
-      "fingerprintsCollector.star.runStar_addParam": null,
-      "fingerprintsCollector.star.runStar_alignIntMax": null,
-      "fingerprintsCollector.star.runStar_alignMatGapMax": null,
-      "fingerprintsCollector.star.runStar_alignSJDBOvMin": null,
-      "fingerprintsCollector.star.runStar_chimJunOvMin": null,
-      "fingerprintsCollector.star.runStar_chimMulmapNmax": null,
-      "fingerprintsCollector.star.runStar_chimMulmapScoRan": null,
-      "fingerprintsCollector.star.runStar_chimNonchimScoDMin": null,
-      "fingerprintsCollector.star.runStar_chimOutJunForm": null,
-      "fingerprintsCollector.star.runStar_chimOutType": null,
-      "fingerprintsCollector.star.runStar_chimScoJunNonGTAG": null,
-      "fingerprintsCollector.star.runStar_chimScoreDropMax": null,
-      "fingerprintsCollector.star.runStar_chimScoreSeparation": null,
-      "fingerprintsCollector.star.runStar_chimSegmentReadGapMax": null,
-      "fingerprintsCollector.star.runStar_chimSegmin": null,
-      "fingerprintsCollector.star.runStar_chimericjunctionSuffix": null,
-      "fingerprintsCollector.star.runStar_genereadSuffix": null,
-      "fingerprintsCollector.star.runStar_jobMemory": null,
-      "fingerprintsCollector.star.runStar_multiMax": null,
-      "fingerprintsCollector.star.runStar_outFilterMultimapNmax": null,
-      "fingerprintsCollector.star.runStar_peOvMMp": null,
-      "fingerprintsCollector.star.runStar_peOvNbasesMin": null,
-      "fingerprintsCollector.star.runStar_saSparsed": null,
-      "fingerprintsCollector.star.runStar_starSuffix": null,
-      "fingerprintsCollector.star.runStar_threads": null,
-      "fingerprintsCollector.star.runStar_timeout": null,
-      "fingerprintsCollector.star.runStar_transcriptomeSuffix": null,
-      "fingerprintsCollector.star.runStar_uniqMAPQ": null,
-      "fingerprintsCollector.star.indexBam_modules" : null,
-      "fingerprintsCollector.star.indexBam_timeout" : null,
-      "fingerprintsCollector.star.indexBam_jobMemory" : null,
-      "fingerprintsCollector.maxReads" : 50000,
-      "fingerprintsCollector.downsample.modules" : "seqtk/1.3",
-      "fingerprintsCollector.downsample.jobMemory" : null,
-      "fingerprintsCollector.downsample.timeout" : null,
-      "fingerprintsCollector.markDuplicates.modules" : "gatk/4.2.0.0",
-      "fingerprintsCollector.markDuplicates.jobMemory" : null,
-      "fingerprintsCollector.markDuplicates.timeout" : null,
-      "fingerprintsCollector.assessCoverage.modules" : "samtools/1.14",
-      "fingerprintsCollector.assessCoverage.jobMemory" : null,
-      "fingerprintsCollector.assessCoverage.timeout" : null,
-      "fingerprintsCollector.generateFingerprint.modules" : "gatk/4.2.0.0 tabix/0.2.6 hg38/p12",
-      "fingerprintsCollector.generateFingerprint.jobMemory" : null,
-      "fingerprintsCollector.generateFingerprint.timeout" : null,
-      "fingerprintsCollector.generateFingerprint.stdCC" : null,	  
-      "fingerprintsCollector.hotspots" : "/.mounts/labs/gsi/testdata/fingerprintsCollector/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
-      "fingerprintsCollector.runFinCreator.modules" : "python/3.6",
-      "fingerprintsCollector.runFinCreator.chroms" : null,
-      "fingerprintsCollector.runFinCreator.jobMemory" : null,
-      "fingerprintsCollector.runFinCreator.timeout" : null
+      "hotspotFingerprintsCollector.inputType": "fastq",
+      "hotspotFingerprintsCollector.outputFileNamePrefix": "TEST_0001_WG_HG38_FASTQ",
+      "hotspotFingerprintsCollector.aligner": "bwa",
+      "hotspotFingerprintsCollector.markDups" : "true",
+      "hotspotFingerprintsCollector.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg38-p12/hg38_random.fa",
+      "hotspotFingerprintsCollector.bwaMem.runBwaMem_modules": "samtools/1.9 bwa/0.7.12 hg38-bwa-index-with-alt/0.7.12",
+      "hotspotFingerprintsCollector.bwaMem.runBwaMem_bwaRef": "/.mounts/labs/gsi/modulator/sw/data/hg38-bwa-index-with-alt-0.7.12/hg38_random.fa",
+      "hotspotFingerprintsCollector.bwaMem.adapterTrimmingLog_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.adapterTrimmingLog_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.indexBam_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.indexBam_modules": null,
+      "hotspotFingerprintsCollector.bwaMem.indexBam_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.bamMerge_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.bamMerge_modules": null,
+      "hotspotFingerprintsCollector.bwaMem.bamMerge_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.runBwaMem_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.runBwaMem_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.runBwaMem_threads": null,
+      "hotspotFingerprintsCollector.bwaMem.adapterTrimming_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.adapterTrimming_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.adapterTrimming_modules": null,
+      "hotspotFingerprintsCollector.bwaMem.slicerR2_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.slicerR2_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.slicerR2_modules": null,
+      "hotspotFingerprintsCollector.bwaMem.slicerR1_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.slicerR1_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.slicerR1_modules": null,
+      "hotspotFingerprintsCollector.bwaMem.countChunkSize_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.countChunkSize_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.readGroups": null,
+      "hotspotFingerprintsCollector.bwaMem.outputFileNamePrefix": null,
+      "hotspotFingerprintsCollector.bwaMem.numChunk": null,
+      "hotspotFingerprintsCollector.bwaMem.doTrim": null,
+      "hotspotFingerprintsCollector.bwaMem.trimMinLength": null,
+      "hotspotFingerprintsCollector.bwaMem.trimMinQuality": null,
+      "hotspotFingerprintsCollector.bwaMem.adapter1": null,
+      "hotspotFingerprintsCollector.bwaMem.adapter2": null,
+      "hotspotFingerprintsCollector.bwaMem.runBwaMem_addParam": null,
+      "hotspotFingerprintsCollector.bwaMem.adapterTrimming_addParam": null,
+      "hotspotFingerprintsCollector.bam": null,
+      "hotspotFingerprintsCollector.bamIndex": null,
+      "hotspotFingerprintsCollector.star.runStar_modules" : "star/2.7.3a hg38-star-index100/2.7.3a",
+      "hotspotFingerprintsCollector.star.runStar_genomeIndexDir" : "/.mounts/labs/gsi/modulator/sw/data/hg38-star-index100-2.7.3a",
+      "hotspotFingerprintsCollector.star.outputFileNamePrefix": null,
+      "hotspotFingerprintsCollector.star.runStar_addParam": null,
+      "hotspotFingerprintsCollector.star.runStar_alignIntMax": null,
+      "hotspotFingerprintsCollector.star.runStar_alignMatGapMax": null,
+      "hotspotFingerprintsCollector.star.runStar_alignSJDBOvMin": null,
+      "hotspotFingerprintsCollector.star.runStar_chimJunOvMin": null,
+      "hotspotFingerprintsCollector.star.runStar_chimMulmapNmax": null,
+      "hotspotFingerprintsCollector.star.runStar_chimMulmapScoRan": null,
+      "hotspotFingerprintsCollector.star.runStar_chimNonchimScoDMin": null,
+      "hotspotFingerprintsCollector.star.runStar_chimOutJunForm": null,
+      "hotspotFingerprintsCollector.star.runStar_chimOutType": null,
+      "hotspotFingerprintsCollector.star.runStar_chimScoJunNonGTAG": null,
+      "hotspotFingerprintsCollector.star.runStar_chimScoreDropMax": null,
+      "hotspotFingerprintsCollector.star.runStar_chimScoreSeparation": null,
+      "hotspotFingerprintsCollector.star.runStar_chimSegmentReadGapMax": null,
+      "hotspotFingerprintsCollector.star.runStar_chimSegmin": null,
+      "hotspotFingerprintsCollector.star.runStar_chimericjunctionSuffix": null,
+      "hotspotFingerprintsCollector.star.runStar_genereadSuffix": null,
+      "hotspotFingerprintsCollector.star.runStar_jobMemory": null,
+      "hotspotFingerprintsCollector.star.runStar_multiMax": null,
+      "hotspotFingerprintsCollector.star.runStar_outFilterMultimapNmax": null,
+      "hotspotFingerprintsCollector.star.runStar_peOvMMp": null,
+      "hotspotFingerprintsCollector.star.runStar_peOvNbasesMin": null,
+      "hotspotFingerprintsCollector.star.runStar_saSparsed": null,
+      "hotspotFingerprintsCollector.star.runStar_starSuffix": null,
+      "hotspotFingerprintsCollector.star.runStar_threads": null,
+      "hotspotFingerprintsCollector.star.runStar_timeout": null,
+      "hotspotFingerprintsCollector.star.runStar_transcriptomeSuffix": null,
+      "hotspotFingerprintsCollector.star.runStar_uniqMAPQ": null,
+      "hotspotFingerprintsCollector.star.indexBam_modules" : null,
+      "hotspotFingerprintsCollector.star.indexBam_timeout" : null,
+      "hotspotFingerprintsCollector.star.indexBam_jobMemory" : null,
+      "hotspotFingerprintsCollector.maxReads" : 50000,
+      "hotspotFingerprintsCollector.downsample.modules" : "seqtk/1.3",
+      "hotspotFingerprintsCollector.downsample.jobMemory" : null,
+      "hotspotFingerprintsCollector.downsample.timeout" : null,
+      "hotspotFingerprintsCollector.markDuplicates.modules" : "gatk/4.2.0.0",
+      "hotspotFingerprintsCollector.markDuplicates.jobMemory" : null,
+      "hotspotFingerprintsCollector.markDuplicates.timeout" : null,
+      "hotspotFingerprintsCollector.assessCoverage.modules" : "samtools/1.14",
+      "hotspotFingerprintsCollector.assessCoverage.jobMemory" : null,
+      "hotspotFingerprintsCollector.assessCoverage.timeout" : null,
+      "hotspotFingerprintsCollector.generateFingerprint.modules" : "gatk/4.2.0.0 tabix/0.2.6 hg38/p12",
+      "hotspotFingerprintsCollector.generateFingerprint.jobMemory" : null,
+      "hotspotFingerprintsCollector.generateFingerprint.timeout" : null,
+      "hotspotFingerprintsCollector.generateFingerprint.stdCC" : null,	  
+      "hotspotFingerprintsCollector.hotspots" : "/.mounts/labs/gsi/testdata/fingerprintsCollector/dbsnp137.hg38p12.402.overlap.vcf.gz",
+      "hotspotFingerprintsCollector.runFinCreator.modules" : "python/3.6",
+      "hotspotFingerprintsCollector.runFinCreator.chroms" : null,
+      "hotspotFingerprintsCollector.runFinCreator.jobMemory" : null,
+      "hotspotFingerprintsCollector.runFinCreator.timeout" : null
     },
     "engineArguments": {
       "write_to_cache": false,
       "read_from_cache": false
     },
     "metadata": {
-      "fingerprintsCollector.outputVcf": {
+      "hotspotFingerprintsCollector.coverage": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
       },
-      "fingerprintsCollector.outputTbi": {
+      "hotspotFingerprintsCollector.json": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
       },
-      "fingerprintsCollector.coverage": {
+      "hotspotFingerprintsCollector.hotspotVcf": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
       },
-      "fingerprintsCollector.json": {
+      "hotspotFingerprintsCollector.hotspotTbi": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
       },
-      "fingerprintsCollector.hotspotVcf": {
+      "hotspotFingerprintsCollector.hotspotFin": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.hotspotTbi": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.hotspotFin": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
@@ -588,216 +350,19 @@
       {
         "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
         "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-        "output_metrics": "/.mounts/labs/gsi/testdata/fingerprintsCollector/output_expectation/TEST_0001_WG_HG38_FASTQ_INPUT_MAXREADS.metrics",
+        "output_metrics": "/.mounts/labs/gsi/testdata/hotspotFingerprintsCollector/output_expectation/TEST_0001_WG_HG38_FASTQ_INPUT_MAXREADS.metrics",
         "type": "script"
       }
     ]
   },
-  {
-    "id": "TEST_0001_WT_HG38_FASTQ_INPUT_MAXREADS",
-    "description": "runs the fingerprintsCollector workflow on a WT library using hg38, with fastq as input, star as aligner, downsample to 50000 reads",
-    "arguments": {
-      "fingerprintsCollector.fastqR1": {
-        "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/fingerprintsCollector/input_data/TEST_0001_WT_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R1.fastq.gz",
-          "externalIds": [
-            {
-              "id": "TEST",
-              "provider": "TEST"
-            }
-          ]
-        },
-        "type": "EXTERNAL"
-      },
-      "fingerprintsCollector.fastqR2": {
-        "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/fingerprintsCollector/input_data/TEST_0001_WT_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R2.fastq.gz",
-          "externalIds": [
-            {
-              "id": "TEST",
-              "provider": "TEST"
-            }
-          ]
-        },
-        "type": "EXTERNAL"
-      },
-      "fingerprintsCollector.inputType": "fastq",
-      "fingerprintsCollector.haplotypeMap": "/.mounts/labs/gsi/modulator/sw/data/fingerprints-haplotype-map-20210315/oicr_hg38_chr.map",
-      "fingerprintsCollector.outputFileNamePrefix": "TEST_0001_WT_HG38_FASTQ",
-      "fingerprintsCollector.aligner": "star",
-      "fingerprintsCollector.markDups" : "true",
-      "fingerprintsCollector.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg38-p12/hg38_random.fa",
-      "fingerprintsCollector.bwaMem.runBwaMem_modules": "samtools/1.9 bwa/0.7.12 hg38-bwa-index-with-alt/0.7.12",
-      "fingerprintsCollector.bwaMem.runBwaMem_bwaRef": "/.mounts/labs/gsi/modulator/sw/data/hg38-bwa-index-with-alt-0.7.12/hg38_random.fa",
-      "fingerprintsCollector.bwaMem.adapterTrimmingLog_timeout": null,
-      "fingerprintsCollector.bwaMem.adapterTrimmingLog_jobMemory": null,
-      "fingerprintsCollector.bwaMem.indexBam_timeout": null,
-      "fingerprintsCollector.bwaMem.indexBam_modules": null,
-      "fingerprintsCollector.bwaMem.indexBam_jobMemory": null,
-      "fingerprintsCollector.bwaMem.bamMerge_timeout": null,
-      "fingerprintsCollector.bwaMem.bamMerge_modules": null,
-      "fingerprintsCollector.bwaMem.bamMerge_jobMemory": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_timeout": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_jobMemory": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_threads": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_timeout": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_jobMemory": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_modules": null,
-      "fingerprintsCollector.bwaMem.slicerR2_timeout": null,
-      "fingerprintsCollector.bwaMem.slicerR2_jobMemory": null,
-      "fingerprintsCollector.bwaMem.slicerR2_modules": null,
-      "fingerprintsCollector.bwaMem.slicerR1_timeout": null,
-      "fingerprintsCollector.bwaMem.slicerR1_jobMemory": null,
-      "fingerprintsCollector.bwaMem.slicerR1_modules": null,
-      "fingerprintsCollector.bwaMem.countChunkSize_timeout": null,
-      "fingerprintsCollector.bwaMem.countChunkSize_jobMemory": null,
-      "fingerprintsCollector.bwaMem.readGroups": null,
-      "fingerprintsCollector.bwaMem.outputFileNamePrefix": null,
-      "fingerprintsCollector.bwaMem.numChunk": null,
-      "fingerprintsCollector.bwaMem.doTrim": null,
-      "fingerprintsCollector.bwaMem.trimMinLength": null,
-      "fingerprintsCollector.bwaMem.trimMinQuality": null,
-      "fingerprintsCollector.bwaMem.adapter1": null,
-      "fingerprintsCollector.bwaMem.adapter2": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_addParam": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_addParam": null,
-      "fingerprintsCollector.extractFingerprint.modules": "gatk/4.2.0.0 tabix/0.2.6 hg38/p12",
-      "fingerprintsCollector.extractFingerprint.jobMemory": null,
-      "fingerprintsCollector.extractFingerprint.timeout": null,
-      "fingerprintsCollector.bam": null,
-      "fingerprintsCollector.bamIndex": null,
-      "fingerprintsCollector.star.runStar_modules" : "star/2.7.3a hg38-star-index100/2.7.3a",
-      "fingerprintsCollector.star.runStar_genomeIndexDir" : "/.mounts/labs/gsi/modulator/sw/data/hg38-star-index100-2.7.3a",
-      "fingerprintsCollector.star.outputFileNamePrefix": null,
-      "fingerprintsCollector.star.runStar_addParam": null,
-      "fingerprintsCollector.star.runStar_alignIntMax": null,
-      "fingerprintsCollector.star.runStar_alignMatGapMax": null,
-      "fingerprintsCollector.star.runStar_alignSJDBOvMin": null,
-      "fingerprintsCollector.star.runStar_chimJunOvMin": null,
-      "fingerprintsCollector.star.runStar_chimMulmapNmax": null,
-      "fingerprintsCollector.star.runStar_chimMulmapScoRan": null,
-      "fingerprintsCollector.star.runStar_chimNonchimScoDMin": null,
-      "fingerprintsCollector.star.runStar_chimOutJunForm": null,
-      "fingerprintsCollector.star.runStar_chimOutType": null,
-      "fingerprintsCollector.star.runStar_chimScoJunNonGTAG": null,
-      "fingerprintsCollector.star.runStar_chimScoreDropMax": null,
-      "fingerprintsCollector.star.runStar_chimScoreSeparation": null,
-      "fingerprintsCollector.star.runStar_chimSegmentReadGapMax": null,
-      "fingerprintsCollector.star.runStar_chimSegmin": null,
-      "fingerprintsCollector.star.runStar_chimericjunctionSuffix": null,
-      "fingerprintsCollector.star.runStar_genereadSuffix": null,
-      "fingerprintsCollector.star.runStar_jobMemory": null,
-      "fingerprintsCollector.star.runStar_multiMax": null,
-      "fingerprintsCollector.star.runStar_outFilterMultimapNmax": null,
-      "fingerprintsCollector.star.runStar_peOvMMp": null,
-      "fingerprintsCollector.star.runStar_peOvNbasesMin": null,
-      "fingerprintsCollector.star.runStar_saSparsed": null,
-      "fingerprintsCollector.star.runStar_starSuffix": null,
-      "fingerprintsCollector.star.runStar_threads": null,
-      "fingerprintsCollector.star.runStar_timeout": null,
-      "fingerprintsCollector.star.runStar_transcriptomeSuffix": null,
-      "fingerprintsCollector.star.runStar_uniqMAPQ": null,
-      "fingerprintsCollector.star.indexBam_modules" : null,
-      "fingerprintsCollector.star.indexBam_timeout" : null,
-      "fingerprintsCollector.star.indexBam_jobMemory" : null,
-      "fingerprintsCollector.maxReads" : 50000,
-      "fingerprintsCollector.downsample.modules" : "seqtk/1.3",
-      "fingerprintsCollector.downsample.jobMemory" : null,
-      "fingerprintsCollector.downsample.timeout" : null,
-      "fingerprintsCollector.markDuplicates.modules" : "gatk/4.2.0.0",
-      "fingerprintsCollector.markDuplicates.jobMemory" : null,
-      "fingerprintsCollector.markDuplicates.timeout" : null,
-      "fingerprintsCollector.assessCoverage.modules" : "samtools/1.14",
-      "fingerprintsCollector.assessCoverage.jobMemory" : null,
-      "fingerprintsCollector.assessCoverage.timeout" : null,
-      "fingerprintsCollector.generateFingerprint.modules" : "gatk/4.2.0.0 tabix/0.2.6 hg38/p12",
-      "fingerprintsCollector.generateFingerprint.jobMemory" : null,
-      "fingerprintsCollector.generateFingerprint.timeout" : null,
-      "fingerprintsCollector.generateFingerprint.stdCC" : null,	  
-      "fingerprintsCollector.hotspots" : "/.mounts/labs/gsi/testdata/fingerprintsCollector/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
-      "fingerprintsCollector.runFinCreator.modules" : "python/3.6",
-      "fingerprintsCollector.runFinCreator.chroms" : null,
-      "fingerprintsCollector.runFinCreator.jobMemory" : null,
-      "fingerprintsCollector.runFinCreator.timeout" : null
-    },
-    "engineArguments": {
-      "write_to_cache": false,
-      "read_from_cache": false
-    },
-    "metadata": {
-      "fingerprintsCollector.outputVcf": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.outputTbi": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.coverage": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.json": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.hotspotVcf": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.hotspotTbi": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.hotspotFin": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      }
-   },
-    "validators": [
-      {
-        "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
-        "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-        "output_metrics": "/.mounts/labs/gsi/testdata/fingerprintsCollector/output_expectation/TEST_0001_WT_HG38_FASTQ_STAR_INPUT_MAXREADS.metrics",
-        "type": "script"
-      }
-    ]
-  },
+
   {
     "id": "TEST_0001_WG_HG38_BAM_INPUT",
-    "description": "runs the fingerprintsCollector workflow on a WG library using hg38, with bam files as input",
+    "description": "runs the hotspotFingerprintsCollector workflow on a WG library using hg38, with bam files as input",
     "arguments": {
-      "fingerprintsCollector.bam": {
+      "hotspotFingerprintsCollector.bam": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/fingerprintsCollector/input_data/TEST_0001_WG_HG38.bam",
+          "configuration": "/.mounts/labs/gsi/testdata/crosscheckFingerprintsCollector/input_data/TEST_0001_WG_HG38.bam",
           "externalIds": [
             {
               "id": "TEST",
@@ -807,9 +372,9 @@
         },
         "type": "EXTERNAL"
       },
-      "fingerprintsCollector.bamIndex": {
+      "hotspotFingerprintsCollector.bamIndex": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/fingerprintsCollector/input_data/TEST_0001_WG_HG38.bam.bai",
+          "configuration": "/.mounts/labs/gsi/testdata/crosscheckFingerprintsCollector/input_data/TEST_0001_WG_HG38.bam.bai",
           "externalIds": [
             {
               "id": "TEST",
@@ -819,162 +384,142 @@
         },
         "type": "EXTERNAL"
       },
-      "fingerprintsCollector.inputType": "bam",
-      "fingerprintsCollector.haplotypeMap": "/.mounts/labs/gsi/modulator/sw/data/fingerprints-haplotype-map-20210315/oicr_hg38_chr.map",
-      "fingerprintsCollector.outputFileNamePrefix": "TEST_0001_WG_HG38_BAM",
-      "fingerprintsCollector.aligner": "bwa",
-      "fingerprintsCollector.markDups" : "true",
-      "fingerprintsCollector.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg38-p12/hg38_random.fa",
-      "fingerprintsCollector.bwaMem.runBwaMem_modules": "samtools/1.9 bwa/0.7.12 hg38-bwa-index-with-alt/0.7.12",
-      "fingerprintsCollector.bwaMem.runBwaMem_bwaRef": "/.mounts/labs/gsi/modulator/sw/data/hg38-bwa-index-with-alt-0.7.12/hg38_random.fa",
-      "fingerprintsCollector.bwaMem.adapterTrimmingLog_timeout": null,
-      "fingerprintsCollector.bwaMem.adapterTrimmingLog_jobMemory": null,
-      "fingerprintsCollector.bwaMem.indexBam_timeout": null,
-      "fingerprintsCollector.bwaMem.indexBam_modules": null,
-      "fingerprintsCollector.bwaMem.indexBam_jobMemory": null,
-      "fingerprintsCollector.bwaMem.bamMerge_timeout": null,
-      "fingerprintsCollector.bwaMem.bamMerge_modules": null,
-      "fingerprintsCollector.bwaMem.bamMerge_jobMemory": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_timeout": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_jobMemory": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_threads": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_timeout": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_jobMemory": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_modules": null,
-      "fingerprintsCollector.bwaMem.slicerR2_timeout": null,
-      "fingerprintsCollector.bwaMem.slicerR2_jobMemory": null,
-      "fingerprintsCollector.bwaMem.slicerR2_modules": null,
-      "fingerprintsCollector.bwaMem.slicerR1_timeout": null,
-      "fingerprintsCollector.bwaMem.slicerR1_jobMemory": null,
-      "fingerprintsCollector.bwaMem.slicerR1_modules": null,
-      "fingerprintsCollector.bwaMem.countChunkSize_timeout": null,
-      "fingerprintsCollector.bwaMem.countChunkSize_jobMemory": null,
-      "fingerprintsCollector.bwaMem.readGroups": null,
-      "fingerprintsCollector.bwaMem.outputFileNamePrefix": null,
-      "fingerprintsCollector.bwaMem.numChunk": null,
-      "fingerprintsCollector.bwaMem.doTrim": null,
-      "fingerprintsCollector.bwaMem.trimMinLength": null,
-      "fingerprintsCollector.bwaMem.trimMinQuality": null,
-      "fingerprintsCollector.bwaMem.adapter1": null,
-      "fingerprintsCollector.bwaMem.adapter2": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_addParam": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_addParam": null,
-      "fingerprintsCollector.extractFingerprint.modules": "gatk/4.2.0.0 tabix/0.2.6 hg38/p12",
-      "fingerprintsCollector.extractFingerprint.jobMemory": null,
-      "fingerprintsCollector.extractFingerprint.timeout": null,
-      "fingerprintsCollector.fastqR1": null,
-      "fingerprintsCollector.fastqR2": null,
-      "fingerprintsCollector.star.runStar_modules" : "star/2.7.3a hg38-star-index100/2.7.3a",
-      "fingerprintsCollector.star.runStar_genomeIndexDir" : "/.mounts/labs/gsi/modulator/sw/data/hg38-star-index100-2.7.3a",
-      "fingerprintsCollector.star.outputFileNamePrefix": null,
-      "fingerprintsCollector.star.runStar_addParam": null,
-      "fingerprintsCollector.star.runStar_alignIntMax": null,
-      "fingerprintsCollector.star.runStar_alignMatGapMax": null,
-      "fingerprintsCollector.star.runStar_alignSJDBOvMin": null,
-      "fingerprintsCollector.star.runStar_chimJunOvMin": null,
-      "fingerprintsCollector.star.runStar_chimMulmapNmax": null,
-      "fingerprintsCollector.star.runStar_chimMulmapScoRan": null,
-      "fingerprintsCollector.star.runStar_chimNonchimScoDMin": null,
-      "fingerprintsCollector.star.runStar_chimOutJunForm": null,
-      "fingerprintsCollector.star.runStar_chimOutType": null,
-      "fingerprintsCollector.star.runStar_chimScoJunNonGTAG": null,
-      "fingerprintsCollector.star.runStar_chimScoreDropMax": null,
-      "fingerprintsCollector.star.runStar_chimScoreSeparation": null,
-      "fingerprintsCollector.star.runStar_chimSegmentReadGapMax": null,
-      "fingerprintsCollector.star.runStar_chimSegmin": null,
-      "fingerprintsCollector.star.runStar_chimericjunctionSuffix": null,
-      "fingerprintsCollector.star.runStar_genereadSuffix": null,
-      "fingerprintsCollector.star.runStar_jobMemory": null,
-      "fingerprintsCollector.star.runStar_multiMax": null,
-      "fingerprintsCollector.star.runStar_outFilterMultimapNmax": null,
-      "fingerprintsCollector.star.runStar_peOvMMp": null,
-      "fingerprintsCollector.star.runStar_peOvNbasesMin": null,
-      "fingerprintsCollector.star.runStar_saSparsed": null,
-      "fingerprintsCollector.star.runStar_starSuffix": null,
-      "fingerprintsCollector.star.runStar_threads": null,
-      "fingerprintsCollector.star.runStar_timeout": null,
-      "fingerprintsCollector.star.runStar_transcriptomeSuffix": null,
-      "fingerprintsCollector.star.runStar_uniqMAPQ": null,
-      "fingerprintsCollector.star.indexBam_modules" : null,
-      "fingerprintsCollector.star.indexBam_timeout" : null,
-      "fingerprintsCollector.star.indexBam_jobMemory" : null,
-      "fingerprintsCollector.maxReads" : null,
-      "fingerprintsCollector.downsample.modules" : "seqtk/1.3",
-      "fingerprintsCollector.downsample.jobMemory" : null,
-      "fingerprintsCollector.downsample.timeout" : null,
-      "fingerprintsCollector.markDuplicates.modules" : "gatk/4.2.0.0",
-      "fingerprintsCollector.markDuplicates.jobMemory" : null,
-      "fingerprintsCollector.markDuplicates.timeout" : null,
-      "fingerprintsCollector.assessCoverage.modules" : "samtools/1.14",
-      "fingerprintsCollector.assessCoverage.jobMemory" : null,
-      "fingerprintsCollector.assessCoverage.timeout" : null,
-      "fingerprintsCollector.generateFingerprint.modules" : "gatk/4.2.0.0 tabix/0.2.6 hg38/p12",
-      "fingerprintsCollector.generateFingerprint.jobMemory" : null,
-      "fingerprintsCollector.generateFingerprint.timeout" : null,
-      "fingerprintsCollector.generateFingerprint.stdCC" : null,	  
-      "fingerprintsCollector.hotspots" : "/.mounts/labs/gsi/testdata/fingerprintsCollector/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
-      "fingerprintsCollector.runFinCreator.modules" : "python/3.6",
-      "fingerprintsCollector.runFinCreator.chroms" : null,
-      "fingerprintsCollector.runFinCreator.jobMemory" : null,
-      "fingerprintsCollector.runFinCreator.timeout" : null
+      "hotspotFingerprintsCollector.inputType": "bam",
+      "hotspotFingerprintsCollector.outputFileNamePrefix": "TEST_0001_WG_HG38_BAM",
+      "hotspotFingerprintsCollector.aligner": "bwa",
+      "hotspotFingerprintsCollector.markDups" : "true",
+      "hotspotFingerprintsCollector.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg38-p12/hg38_random.fa",
+      "hotspotFingerprintsCollector.bwaMem.runBwaMem_modules": "samtools/1.9 bwa/0.7.12 hg38-bwa-index-with-alt/0.7.12",
+      "hotspotFingerprintsCollector.bwaMem.runBwaMem_bwaRef": "/.mounts/labs/gsi/modulator/sw/data/hg38-bwa-index-with-alt-0.7.12/hg38_random.fa",
+      "hotspotFingerprintsCollector.bwaMem.adapterTrimmingLog_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.adapterTrimmingLog_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.indexBam_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.indexBam_modules": null,
+      "hotspotFingerprintsCollector.bwaMem.indexBam_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.bamMerge_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.bamMerge_modules": null,
+      "hotspotFingerprintsCollector.bwaMem.bamMerge_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.runBwaMem_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.runBwaMem_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.runBwaMem_threads": null,
+      "hotspotFingerprintsCollector.bwaMem.adapterTrimming_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.adapterTrimming_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.adapterTrimming_modules": null,
+      "hotspotFingerprintsCollector.bwaMem.slicerR2_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.slicerR2_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.slicerR2_modules": null,
+      "hotspotFingerprintsCollector.bwaMem.slicerR1_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.slicerR1_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.slicerR1_modules": null,
+      "hotspotFingerprintsCollector.bwaMem.countChunkSize_timeout": null,
+      "hotspotFingerprintsCollector.bwaMem.countChunkSize_jobMemory": null,
+      "hotspotFingerprintsCollector.bwaMem.readGroups": null,
+      "hotspotFingerprintsCollector.bwaMem.outputFileNamePrefix": null,
+      "hotspotFingerprintsCollector.bwaMem.numChunk": null,
+      "hotspotFingerprintsCollector.bwaMem.doTrim": null,
+      "hotspotFingerprintsCollector.bwaMem.trimMinLength": null,
+      "hotspotFingerprintsCollector.bwaMem.trimMinQuality": null,
+      "hotspotFingerprintsCollector.bwaMem.adapter1": null,
+      "hotspotFingerprintsCollector.bwaMem.adapter2": null,
+      "hotspotFingerprintsCollector.bwaMem.runBwaMem_addParam": null,
+      "hotspotFingerprintsCollector.bwaMem.adapterTrimming_addParam": null,
+      "hotspotFingerprintsCollector.fastqR1": null,
+      "hotspotFingerprintsCollector.fastqR2": null,
+      "hotspotFingerprintsCollector.star.runStar_modules" : "star/2.7.3a hg38-star-index100/2.7.3a",
+      "hotspotFingerprintsCollector.star.runStar_genomeIndexDir" : "/.mounts/labs/gsi/modulator/sw/data/hg38-star-index100-2.7.3a",
+      "hotspotFingerprintsCollector.star.outputFileNamePrefix": null,
+      "hotspotFingerprintsCollector.star.runStar_addParam": null,
+      "hotspotFingerprintsCollector.star.runStar_alignIntMax": null,
+      "hotspotFingerprintsCollector.star.runStar_alignMatGapMax": null,
+      "hotspotFingerprintsCollector.star.runStar_alignSJDBOvMin": null,
+      "hotspotFingerprintsCollector.star.runStar_chimJunOvMin": null,
+      "hotspotFingerprintsCollector.star.runStar_chimMulmapNmax": null,
+      "hotspotFingerprintsCollector.star.runStar_chimMulmapScoRan": null,
+      "hotspotFingerprintsCollector.star.runStar_chimNonchimScoDMin": null,
+      "hotspotFingerprintsCollector.star.runStar_chimOutJunForm": null,
+      "hotspotFingerprintsCollector.star.runStar_chimOutType": null,
+      "hotspotFingerprintsCollector.star.runStar_chimScoJunNonGTAG": null,
+      "hotspotFingerprintsCollector.star.runStar_chimScoreDropMax": null,
+      "hotspotFingerprintsCollector.star.runStar_chimScoreSeparation": null,
+      "hotspotFingerprintsCollector.star.runStar_chimSegmentReadGapMax": null,
+      "hotspotFingerprintsCollector.star.runStar_chimSegmin": null,
+      "hotspotFingerprintsCollector.star.runStar_chimericjunctionSuffix": null,
+      "hotspotFingerprintsCollector.star.runStar_genereadSuffix": null,
+      "hotspotFingerprintsCollector.star.runStar_jobMemory": null,
+      "hotspotFingerprintsCollector.star.runStar_multiMax": null,
+      "hotspotFingerprintsCollector.star.runStar_outFilterMultimapNmax": null,
+      "hotspotFingerprintsCollector.star.runStar_peOvMMp": null,
+      "hotspotFingerprintsCollector.star.runStar_peOvNbasesMin": null,
+      "hotspotFingerprintsCollector.star.runStar_saSparsed": null,
+      "hotspotFingerprintsCollector.star.runStar_starSuffix": null,
+      "hotspotFingerprintsCollector.star.runStar_threads": null,
+      "hotspotFingerprintsCollector.star.runStar_timeout": null,
+      "hotspotFingerprintsCollector.star.runStar_transcriptomeSuffix": null,
+      "hotspotFingerprintsCollector.star.runStar_uniqMAPQ": null,
+      "hotspotFingerprintsCollector.star.indexBam_modules" : null,
+      "hotspotFingerprintsCollector.star.indexBam_timeout" : null,
+      "hotspotFingerprintsCollector.star.indexBam_jobMemory" : null,
+      "hotspotFingerprintsCollector.maxReads" : null,
+      "hotspotFingerprintsCollector.downsample.modules" : "seqtk/1.3",
+      "hotspotFingerprintsCollector.downsample.jobMemory" : null,
+      "hotspotFingerprintsCollector.downsample.timeout" : null,
+      "hotspotFingerprintsCollector.markDuplicates.modules" : "gatk/4.2.0.0",
+      "hotspotFingerprintsCollector.markDuplicates.jobMemory" : null,
+      "hotspotFingerprintsCollector.markDuplicates.timeout" : null,
+      "hotspotFingerprintsCollector.assessCoverage.modules" : "samtools/1.14",
+      "hotspotFingerprintsCollector.assessCoverage.jobMemory" : null,
+      "hotspotFingerprintsCollector.assessCoverage.timeout" : null,
+      "hotspotFingerprintsCollector.generateFingerprint.modules" : "gatk/4.2.0.0 tabix/0.2.6 hg38/p12",
+      "hotspotFingerprintsCollector.generateFingerprint.jobMemory" : null,
+      "hotspotFingerprintsCollector.generateFingerprint.timeout" : null,
+      "hotspotFingerprintsCollector.generateFingerprint.stdCC" : null,	  
+      "hotspotFingerprintsCollector.hotspots" : "/.mounts/labs/gsi/testdata/fingerprintsCollector/dbsnp137.hg38p12.402.overlap.vcf.gz",
+      "hotspotFingerprintsCollector.runFinCreator.modules" : "python/3.6",
+      "hotspotFingerprintsCollector.runFinCreator.chroms" : null,
+      "hotspotFingerprintsCollector.runFinCreator.jobMemory" : null,
+      "hotspotFingerprintsCollector.runFinCreator.timeout" : null
     },
     "engineArguments": {
       "write_to_cache": false,
       "read_from_cache": false
     },
     "metadata": {
-      "fingerprintsCollector.outputVcf": {
+      "hotspotFingerprintsCollector.coverage": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
       },
-      "fingerprintsCollector.outputTbi": {
+      "hotspotFingerprintsCollector.json": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
       },
-      "fingerprintsCollector.coverage": {
+      "hotspotFingerprintsCollector.hotspotVcf": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
       },
-      "fingerprintsCollector.json": {
+      "hotspotFingerprintsCollector.hotspotTbi": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
       },
-      "fingerprintsCollector.hotspotVcf": {
+      "hotspotFingerprintsCollector.hotspotFin": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.hotspotTbi": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.hotspotFin": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
@@ -984,205 +529,7 @@
       {
         "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
         "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-        "output_metrics": "/.mounts/labs/gsi/testdata/fingerprintsCollector/output_expectation/TEST_0001_WG_HG38_BAM_INPUT.metrics",
-        "type": "script"
-      }
-    ]
-  },
-  {
-    "id": "TEST_0001_WT_HG38_BAM_INPUT",
-    "description": "runs the fingerprintsCollector workflow on a WG library using hg38, with bam files as input",
-    "arguments": {
-      "fingerprintsCollector.bam": {
-        "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/fingerprintsCollector/input_data/TEST_0001_WT_HG38.Aligned.sortedByCoord.out.bam",
-          "externalIds": [
-            {
-              "id": "TEST",
-              "provider": "TEST"
-            }
-          ]
-        },
-        "type": "EXTERNAL"
-      },
-      "fingerprintsCollector.bamIndex": {
-        "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/fingerprintsCollector/input_data/TEST_0001_WT_HG38.Aligned.sortedByCoord.out.bai",
-          "externalIds": [
-            {
-              "id": "TEST",
-              "provider": "TEST"
-            }
-          ]
-        },
-        "type": "EXTERNAL"
-      },
-      "fingerprintsCollector.inputType": "bam",
-      "fingerprintsCollector.haplotypeMap": "/.mounts/labs/gsi/modulator/sw/data/fingerprints-haplotype-map-20210315/oicr_hg38_chr.map",
-      "fingerprintsCollector.outputFileNamePrefix": "TEST_0001_WT_HG38_BAM",
-      "fingerprintsCollector.aligner": "star",
-      "fingerprintsCollector.markDups" : "true",
-      "fingerprintsCollector.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg38-p12/hg38_random.fa",
-      "fingerprintsCollector.bwaMem.runBwaMem_modules": "samtools/1.9 bwa/0.7.12 hg38-bwa-index-with-alt/0.7.12",
-      "fingerprintsCollector.bwaMem.runBwaMem_bwaRef": "/.mounts/labs/gsi/modulator/sw/data/hg38-bwa-index-with-alt-0.7.12/hg38_random.fa",
-      "fingerprintsCollector.bwaMem.adapterTrimmingLog_timeout": null,
-      "fingerprintsCollector.bwaMem.adapterTrimmingLog_jobMemory": null,
-      "fingerprintsCollector.bwaMem.indexBam_timeout": null,
-      "fingerprintsCollector.bwaMem.indexBam_modules": null,
-      "fingerprintsCollector.bwaMem.indexBam_jobMemory": null,
-      "fingerprintsCollector.bwaMem.bamMerge_timeout": null,
-      "fingerprintsCollector.bwaMem.bamMerge_modules": null,
-      "fingerprintsCollector.bwaMem.bamMerge_jobMemory": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_timeout": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_jobMemory": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_threads": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_timeout": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_jobMemory": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_modules": null,
-      "fingerprintsCollector.bwaMem.slicerR2_timeout": null,
-      "fingerprintsCollector.bwaMem.slicerR2_jobMemory": null,
-      "fingerprintsCollector.bwaMem.slicerR2_modules": null,
-      "fingerprintsCollector.bwaMem.slicerR1_timeout": null,
-      "fingerprintsCollector.bwaMem.slicerR1_jobMemory": null,
-      "fingerprintsCollector.bwaMem.slicerR1_modules": null,
-      "fingerprintsCollector.bwaMem.countChunkSize_timeout": null,
-      "fingerprintsCollector.bwaMem.countChunkSize_jobMemory": null,
-      "fingerprintsCollector.bwaMem.readGroups": null,
-      "fingerprintsCollector.bwaMem.outputFileNamePrefix": null,
-      "fingerprintsCollector.bwaMem.numChunk": null,
-      "fingerprintsCollector.bwaMem.doTrim": null,
-      "fingerprintsCollector.bwaMem.trimMinLength": null,
-      "fingerprintsCollector.bwaMem.trimMinQuality": null,
-      "fingerprintsCollector.bwaMem.adapter1": null,
-      "fingerprintsCollector.bwaMem.adapter2": null,
-      "fingerprintsCollector.bwaMem.runBwaMem_addParam": null,
-      "fingerprintsCollector.bwaMem.adapterTrimming_addParam": null,
-      "fingerprintsCollector.extractFingerprint.modules": "gatk/4.2.0.0 tabix/0.2.6 hg38/p12",
-      "fingerprintsCollector.extractFingerprint.jobMemory": null,
-      "fingerprintsCollector.extractFingerprint.timeout": null,
-      "fingerprintsCollector.fastqR1": null,
-      "fingerprintsCollector.fastqR2": null,
-      "fingerprintsCollector.star.runStar_modules" : "star/2.7.3a hg38-star-index100/2.7.3a",
-      "fingerprintsCollector.star.runStar_genomeIndexDir" : "/.mounts/labs/gsi/modulator/sw/data/hg38-star-index100-2.7.3a",
-      "fingerprintsCollector.star.outputFileNamePrefix": null,
-      "fingerprintsCollector.star.runStar_addParam": null,
-      "fingerprintsCollector.star.runStar_alignIntMax": null,
-      "fingerprintsCollector.star.runStar_alignMatGapMax": null,
-      "fingerprintsCollector.star.runStar_alignSJDBOvMin": null,
-      "fingerprintsCollector.star.runStar_chimJunOvMin": null,
-      "fingerprintsCollector.star.runStar_chimMulmapNmax": null,
-      "fingerprintsCollector.star.runStar_chimMulmapScoRan": null,
-      "fingerprintsCollector.star.runStar_chimNonchimScoDMin": null,
-      "fingerprintsCollector.star.runStar_chimOutJunForm": null,
-      "fingerprintsCollector.star.runStar_chimOutType": null,
-      "fingerprintsCollector.star.runStar_chimScoJunNonGTAG": null,
-      "fingerprintsCollector.star.runStar_chimScoreDropMax": null,
-      "fingerprintsCollector.star.runStar_chimScoreSeparation": null,
-      "fingerprintsCollector.star.runStar_chimSegmentReadGapMax": null,
-      "fingerprintsCollector.star.runStar_chimSegmin": null,
-      "fingerprintsCollector.star.runStar_chimericjunctionSuffix": null,
-      "fingerprintsCollector.star.runStar_genereadSuffix": null,
-      "fingerprintsCollector.star.runStar_jobMemory": null,
-      "fingerprintsCollector.star.runStar_multiMax": null,
-      "fingerprintsCollector.star.runStar_outFilterMultimapNmax": null,
-      "fingerprintsCollector.star.runStar_peOvMMp": null,
-      "fingerprintsCollector.star.runStar_peOvNbasesMin": null,
-      "fingerprintsCollector.star.runStar_saSparsed": null,
-      "fingerprintsCollector.star.runStar_starSuffix": null,
-      "fingerprintsCollector.star.runStar_threads": null,
-      "fingerprintsCollector.star.runStar_timeout": null,
-      "fingerprintsCollector.star.runStar_transcriptomeSuffix": null,
-      "fingerprintsCollector.star.runStar_uniqMAPQ": null,
-      "fingerprintsCollector.star.indexBam_modules" : null,
-      "fingerprintsCollector.star.indexBam_timeout" : null,
-      "fingerprintsCollector.star.indexBam_jobMemory" : null,
-      "fingerprintsCollector.maxReads" : null,
-      "fingerprintsCollector.downsample.modules" : "seqtk/1.3",
-      "fingerprintsCollector.downsample.jobMemory" : null,
-      "fingerprintsCollector.downsample.timeout" : null,
-      "fingerprintsCollector.markDuplicates.modules" : "gatk/4.2.0.0",
-      "fingerprintsCollector.markDuplicates.jobMemory" : null,
-      "fingerprintsCollector.markDuplicates.timeout" : null,
-      "fingerprintsCollector.assessCoverage.modules" : "samtools/1.14",
-      "fingerprintsCollector.assessCoverage.jobMemory" : null,
-      "fingerprintsCollector.assessCoverage.timeout" : null,
-      "fingerprintsCollector.generateFingerprint.modules" : "gatk/4.2.0.0 tabix/0.2.6 hg38/p12",
-      "fingerprintsCollector.generateFingerprint.jobMemory" : null,
-      "fingerprintsCollector.generateFingerprint.timeout" : null,
-      "fingerprintsCollector.generateFingerprint.stdCC" : null,	  
-      "fingerprintsCollector.hotspots" : "/.mounts/labs/gsi/testdata/fingerprintsCollector/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
-      "fingerprintsCollector.runFinCreator.modules" : "python/3.6",
-      "fingerprintsCollector.runFinCreator.chroms" : null,
-      "fingerprintsCollector.runFinCreator.jobMemory" : null,
-      "fingerprintsCollector.runFinCreator.timeout" : null
-    },
-    "engineArguments": {
-      "write_to_cache": false,
-      "read_from_cache": false
-    },
-    "metadata": {
-      "fingerprintsCollector.outputVcf": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.outputTbi": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.coverage": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.json": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.hotspotVcf": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.hotspotTbi": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      },
-      "fingerprintsCollector.hotspotFin": {
-        "contents": [
-          {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_fingerprintsCollector_TEST_0001_WG_HG38_FASTQ@JENKINSID@"
-          }
-        ],
-        "type": "ALL"
-      }
-   },
-    "validators": [
-      {
-        "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
-        "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-        "output_metrics": "/.mounts/labs/gsi/testdata/fingerprintsCollector/output_expectation/TEST_0001_WT_HG38_BAM_STAR_INPUT.metrics",
+        "output_metrics": "/.mounts/labs/gsi/testdata/hotspotFingerprintsCollector/output_expectation/TEST_0001_WG_HG38_BAM_INPUT.metrics",
         "type": "script"
       }
     ]
