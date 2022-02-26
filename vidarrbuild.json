@@ -1,6 +1,6 @@
 {
     "names": [
-        "fingerprintsCollector"
+        "hotspotFingerprintCollector"
     ],
-    "wdl": "fingerprintsCollector.wdl"
+    "wdl": "hotspotFingerprintsCollector.wdl"
 }
