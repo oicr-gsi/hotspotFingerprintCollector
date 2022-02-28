@@ -5,7 +5,7 @@
     "arguments": {
       "hotspotFingerprintsCollector.fastqR1": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/crosscheckFingerprintsCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R1.fastq.gz",
+          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R1.fastq.gz",
           "externalIds": [
             {
               "id": "TEST",
@@ -17,7 +17,7 @@
       },
       "hotspotFingerprintsCollector.fastqR2": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/crosscheckFingerprintsCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R2.fastq.gz",
+          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R2.fastq.gz",
           "externalIds": [
             {
               "id": "TEST",
@@ -183,7 +183,7 @@
     "arguments": {
       "hotspotFingerprintsCollector.fastqR1": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/crosscheckFingerprintsCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R1.fastq.gz",
+          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R1.fastq.gz",
           "externalIds": [
             {
               "id": "TEST",
@@ -195,7 +195,7 @@
       },
       "hotspotFingerprintsCollector.fastqR2": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/crosscheckFingerprintsCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R2.fastq.gz",
+          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R2.fastq.gz",
           "externalIds": [
             {
               "id": "TEST",
@@ -362,7 +362,7 @@
     "arguments": {
       "hotspotFingerprintsCollector.bam": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/crosscheckFingerprintsCollector/input_data/TEST_0001_WG_HG38.bam",
+          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/TEST_0001_WG_HG38.bam",
           "externalIds": [
             {
               "id": "TEST",
@@ -374,7 +374,7 @@
       },
       "hotspotFingerprintsCollector.bamIndex": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/crosscheckFingerprintsCollector/input_data/TEST_0001_WG_HG38.bam.bai",
+          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/TEST_0001_WG_HG38.bam.bai",
           "externalIds": [
             {
               "id": "TEST",
