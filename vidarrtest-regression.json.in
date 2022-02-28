@@ -3,30 +3,8 @@
     "id": "TEST_0001_WG_HG38_FASTQ_INPUT",
     "description": "runs the hotspotFingerprintsCollector workflow on a WG library using hg38, with fastq as input",
     "arguments": {
-      "hotspotFingerprintsCollector.fastqR1": {
-        "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R1.fastq.gz",
-          "externalIds": [
-            {
-              "id": "TEST",
-              "provider": "TEST"
-            }
-          ]
-        },
-        "type": "EXTERNAL"
-      },
-      "hotspotFingerprintsCollector.fastqR2": {
-        "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R2.fastq.gz",
-          "externalIds": [
-            {
-              "id": "TEST",
-              "provider": "TEST"
-            }
-          ]
-        },
-        "type": "EXTERNAL"
-      },
+      "hotspotFingerprintsCollector.fastqR1": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R1.fastq.gz",
+      "hotspotFingerprintsCollector.fastqR2": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R2.fastq.gz",
       "hotspotFingerprintsCollector.inputType": "fastq",
       "hotspotFingerprintsCollector.outputFileNamePrefix": "TEST_0001_WG_HG38_FASTQ",
       "hotspotFingerprintsCollector.aligner": "bwa",
@@ -116,7 +94,7 @@
       "hotspotFingerprintsCollector.generateFingerprint.jobMemory" : null,
       "hotspotFingerprintsCollector.generateFingerprint.timeout" : null,
       "hotspotFingerprintsCollector.generateFingerprint.stdCC" : null,	  
-      "hotspotFingerprintsCollector.hotspots" : "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
+      "hotspotFingerprintsCollector.hotspots" : "/.mounts/labs/gsiprojects/gsi/lheisler/WDL/dev_fingerprintsCollector/test1/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
       "hotspotFingerprintsCollector.runFinCreator.modules" : "python/3.6",
       "hotspotFingerprintsCollector.runFinCreator.chroms" : null,
       "hotspotFingerprintsCollector.runFinCreator.jobMemory" : null,
@@ -181,30 +159,8 @@
     "id": "TEST_0001_WG_HG38_FASTQ_INPUT_MAXREADS",
     "description": "runs the hotspotFingerprintsCollector workflow on a WG library using hg38, with fastq as input, downsample to 50000 reads",
     "arguments": {
-      "hotspotFingerprintsCollector.fastqR1": {
-        "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R1.fastq.gz",
-          "externalIds": [
-            {
-              "id": "TEST",
-              "provider": "TEST"
-            }
-          ]
-        },
-        "type": "EXTERNAL"
-      },
-      "hotspotFingerprintsCollector.fastqR2": {
-        "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R2.fastq.gz",
-          "externalIds": [
-            {
-              "id": "TEST",
-              "provider": "TEST"
-            }
-          ]
-        },
-        "type": "EXTERNAL"
-      },
+      "hotspotFingerprintsCollector.fastqR1": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R1.fastq.gz",
+      "hotspotFingerprintsCollector.fastqR2": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/TEST_0001_WG_201130_M06816_0073_000000000-DB5C9_1_AATCGTTA-AATAACGT_R2.fastq.gz",
       "hotspotFingerprintsCollector.inputType": "fastq",
       "hotspotFingerprintsCollector.outputFileNamePrefix": "TEST_0001_WG_HG38_FASTQ",
       "hotspotFingerprintsCollector.aligner": "bwa",
@@ -294,7 +250,7 @@
       "hotspotFingerprintsCollector.generateFingerprint.jobMemory" : null,
       "hotspotFingerprintsCollector.generateFingerprint.timeout" : null,
       "hotspotFingerprintsCollector.generateFingerprint.stdCC" : null,	  
-      "hotspotFingerprintsCollector.hotspots" : "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
+      "hotspotFingerprintsCollector.hotspots" : "/.mounts/labs/gsiprojects/gsi/lheisler/WDL/dev_fingerprintsCollector/test1/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
       "hotspotFingerprintsCollector.runFinCreator.modules" : "python/3.6",
       "hotspotFingerprintsCollector.runFinCreator.chroms" : null,
       "hotspotFingerprintsCollector.runFinCreator.jobMemory" : null,
@@ -360,30 +316,8 @@
     "id": "TEST_0001_WG_HG38_BAM_INPUT",
     "description": "runs the hotspotFingerprintsCollector workflow on a WG library using hg38, with bam files as input",
     "arguments": {
-      "hotspotFingerprintsCollector.bam": {
-        "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/TEST_0001_WG_HG38.bam",
-          "externalIds": [
-            {
-              "id": "TEST",
-              "provider": "TEST"
-            }
-          ]
-        },
-        "type": "EXTERNAL"
-      },
-      "hotspotFingerprintsCollector.bamIndex": {
-        "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/TEST_0001_WG_HG38.bam.bai",
-          "externalIds": [
-            {
-              "id": "TEST",
-              "provider": "TEST"
-            }
-          ]
-        },
-        "type": "EXTERNAL"
-      },
+      "hotspotFingerprintsCollector.bam": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/TEST_0001_WG_HG38.bam",
+      "hotspotFingerprintsCollector.bamIndex": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/TEST_0001_WG_HG38.bam.bai",
       "hotspotFingerprintsCollector.inputType": "bam",
       "hotspotFingerprintsCollector.outputFileNamePrefix": "TEST_0001_WG_HG38_BAM",
       "hotspotFingerprintsCollector.aligner": "bwa",
@@ -473,7 +407,7 @@
       "hotspotFingerprintsCollector.generateFingerprint.jobMemory" : null,
       "hotspotFingerprintsCollector.generateFingerprint.timeout" : null,
       "hotspotFingerprintsCollector.generateFingerprint.stdCC" : null,	  
-      "hotspotFingerprintsCollector.hotspots" : "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
+      "hotspotFingerprintsCollector.hotspots" : "/.mounts/labs/gsiprojects/gsi/lheisler/WDL/dev_fingerprintsCollector/test1/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
       "hotspotFingerprintsCollector.runFinCreator.modules" : "python/3.6",
       "hotspotFingerprintsCollector.runFinCreator.chroms" : null,
       "hotspotFingerprintsCollector.runFinCreator.jobMemory" : null,
