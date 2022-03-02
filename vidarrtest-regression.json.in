@@ -362,7 +362,7 @@
     "arguments": {
       "hotspotFingerprintCollector.bam": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/10MGSICAPBENCH_1196_Ly_R_PE_454_WG_GSICAPBENCH220224_200403_A00469_0097_AH7TL7DSXY_1_TGCGTACA-TTCTCATA.bam",
+          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/10MGSICAPBENCH_1196_Ly_R_PE_454_WG_GSICAPBENCH220224_200403_A00469_0097_AH7TL7DSXY_1_TGCGTACA-TTCTCATA.bam",
           "externalIds": [
             {
               "id": "TEST",
