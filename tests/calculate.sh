@@ -1,7 +1,4 @@
-[200~#!/bin/bash
-set -o nounset
-set -o errexit
-set -o pipefail
+#!/bin/bash
 
 #enter the workflow's final output directory ($1)
 cd $1

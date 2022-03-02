@@ -5,7 +5,7 @@
     "arguments": {
       "hotspotFingerprintCollector.fastqR1": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/10MGSICAPBENCH_1196_Ly_R_PE_454_WG_GSICAPBENCH220224_200403_A00469_0097_AH7TL7DSXY_1_TGCGTACA-TTCTCATA_R1.fastq.gz",
+          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/GSICAPBENCH_1196_Ly_R_PE_454_WG_GSICAPBENCH220224_200403_A00469_0097_AH7TL7DSXY_1_TGCGTACA-TTCTCATA_R1.fastq.gz",
           "externalIds": [
             {
               "id": "TEST",
@@ -17,7 +17,7 @@
       },
       "hotspotFingerprintCollector.fastqR2": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/10MGSICAPBENCH_1196_Ly_R_PE_454_WG_GSICAPBENCH220224_200403_A00469_0097_AH7TL7DSXY_1_TGCGTACA-TTCTCATA_R2.fastq.gz",
+          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/GSICAPBENCH_1196_Ly_R_PE_454_WG_GSICAPBENCH220224_200403_A00469_0097_AH7TL7DSXY_1_TGCGTACA-TTCTCATA_R2.fastq.gz",
           "externalIds": [
             {
               "id": "TEST",
