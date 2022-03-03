@@ -179,10 +179,32 @@
   },
   {
     "id": "TEST_GSICAPBENCH_1196_FASTQ_INPUT_MAXREADS",
-    "description": "runs the hotspotFingerprintCollector workflow on a WG library using hg38, with fastq as input, downsample to 50000 reads",
+    "description": "runs the hotspotFingerprintCollector workflow on a WG library using hg38, with fastq as input, downsample to 5000000 reads",
     "arguments": {
-      "hotspotFingerprintCollector.fastqR1": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/GSICAPBENCH_1196_Ly_R_PE_454_WG_GSICAPBENCH220224_200403_A00469_0097_AH7TL7DSXY_1_TGCGTACA-TTCTCATA_R1.fastq.gz",
-      "hotspotFingerprintCollector.fastqR2": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/GSICAPBENCH_1196_Ly_R_PE_454_WG_GSICAPBENCH220224_200403_A00469_0097_AH7TL7DSXY_1_TGCGTACA-TTCTCATA_R1.fastq.gz",
+      "hotspotFingerprintCollector.fastqR1": {
+        "contents": {
+          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/GSICAPBENCH_1196_Ly_R_PE_454_WG_GSICAPBENCH220224_200403_A00469_0097_AH7TL7DSXY_1_TGCGTACA-TTCTCATA_R1.fastq.gz",
+          "externalIds": [
+            {
+              "id": "TEST",
+              "provider": "TEST"
+            }
+          ]
+        },
+        "type": "EXTERNAL"
+      },
+      "hotspotFingerprintCollector.fastqR2": {
+        "contents": {
+          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/GSICAPBENCH_1196_Ly_R_PE_454_WG_GSICAPBENCH220224_200403_A00469_0097_AH7TL7DSXY_1_TGCGTACA-TTCTCATA_R2.fastq.gz",
+          "externalIds": [
+            {
+              "id": "TEST",
+              "provider": "TEST"
+            }
+          ]
+        },
+        "type": "EXTERNAL"
+      },
       "hotspotFingerprintCollector.inputType": "fastq",
       "hotspotFingerprintCollector.outputFileNamePrefix": "TEST5MDown_0001_WG_HG38_FASTQ",
       "hotspotFingerprintCollector.aligner": "bwa",
