@@ -116,7 +116,7 @@
       "hotspotFingerprintCollector.generateFingerprint.jobMemory" : null,
       "hotspotFingerprintCollector.generateFingerprint.timeout" : null,
       "hotspotFingerprintCollector.generateFingerprint.stdCC" : null,	  
-      "hotspotFingerprintCollector.hotspots" : "/.mounts/labs/gsi/testdata/hotspotFingerprintsCollector/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
+      "hotspotFingerprintCollector.hotspots" : "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/hotspots/dbsnp137.hg38p12.402.overlap.vcf.gz",
       "hotspotFingerprintCollector.runFinCreator.modules" : "python/3.6",
       "hotspotFingerprintCollector.runFinCreator.chroms" : null,
       "hotspotFingerprintCollector.runFinCreator.jobMemory" : null,
@@ -206,7 +206,7 @@
         "type": "EXTERNAL"
       },
       "hotspotFingerprintCollector.inputType": "fastq",
-      "hotspotFingerprintCollector.outputFileNamePrefix": "TEST_GSICAPBENCH_1196_FASTQ",
+      "hotspotFingerprintCollector.outputFileNamePrefix": "TEST5MDown_0001_WG_HG38_FASTQ",
       "hotspotFingerprintCollector.aligner": "bwa",
       "hotspotFingerprintCollector.markDups" : "true",
       "hotspotFingerprintCollector.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg38-p12/hg38_random.fa",
