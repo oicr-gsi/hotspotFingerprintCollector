@@ -206,7 +206,7 @@
         "type": "EXTERNAL"
       },
       "hotspotFingerprintCollector.inputType": "fastq",
-      "hotspotFingerprintCollector.outputFileNamePrefix": "TEST5MDown_0001_WG_HG38_FASTQ",
+      "hotspotFingerprintCollector.outputFileNamePrefix": "GSICAPBENCH_1196_FASTQ",
       "hotspotFingerprintCollector.aligner": "bwa",
       "hotspotFingerprintCollector.markDups" : "true",
       "hotspotFingerprintCollector.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg38-p12/hg38_random.fa",
