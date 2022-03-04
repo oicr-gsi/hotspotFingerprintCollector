@@ -1,4 +1,5 @@
 #!/bin/bash
+et -euo pipefail
 
 #enter the workflow's final output directory ($1)
 cd $1

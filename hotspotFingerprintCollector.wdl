@@ -119,7 +119,7 @@ workflow hotspotFingerprintCollector {
 
     meta {
      author: "Lawrence Heisler and Gavin Peng"
-     email: "lawrence.heisler@oicr.on.ca and Gavin.Peng@pinr.on.ca"
+     email: "lawrence.heisler@oicr.on.ca and Gavin.Peng@oicr.on.ca"
      description: "fingerprintsCollector, workflow that generates aligns reads to reference, then creates fingerprints using variousmethods. Output are fingerprints of various types and coverage statistics from the alignment\n##"
      dependencies: [
       {
