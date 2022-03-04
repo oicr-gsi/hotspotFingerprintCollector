@@ -20,7 +20,6 @@ workflow hotspotFingerprintCollector {
         String markDups
         String outputFileNamePrefix
         String refFasta
-        String haplotypeMap
         Int maxReads = 0
         String hotspots
    }
@@ -35,7 +34,6 @@ workflow hotspotFingerprintCollector {
         markDups : "should the alignment be duplicate marked?, generally yes"
         outputFileNamePrefix: "Optional output prefix for the output"
         refFasta: "Path to the reference fasta file"
-        haplotypeMap: "Path to the gzipped hotspot vcf file"
         maxReads: "The maximum number of reads to process; if set, this will sample the requested number of reads"
 		hotspots: "hotspot file for generateFingerprints"
    }
@@ -120,8 +118,8 @@ workflow hotspotFingerprintCollector {
      }
 
     meta {
-     author: "Lawrence Heisler"
-     email: "lawrence.heisler@oicr.on.ca"
+     author: "Lawrence Heisler and Gavin Peng"
+     email: "lawrence.heisler@oicr.on.ca and Gavin.Peng@oicr.on.ca"
      description: "fingerprintsCollector, workflow that generates aligns reads to reference, then creates fingerprints using variousmethods. Output are fingerprints of various types and coverage statistics from the alignment\n##"
      dependencies: [
       {
@@ -134,8 +132,6 @@ workflow hotspotFingerprintCollector {
       }
      ]
      output_meta: {
-       outputVcf: "the crosscheck fingerprint, gzipped vcf file",
-       outputTbi: "index for the vcf fingerprint",
        coverage : "output from samtools coverage, with per chromosome metrics",
        json : "metrics in json format, currently only the mean coverage for the alignment",
        hotspotVcf : "vcf file from GATK haplotype caller on provided hotspots",
