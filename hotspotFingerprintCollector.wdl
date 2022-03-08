@@ -118,8 +118,8 @@ workflow hotspotFingerprintCollector {
      }
 
     meta {
-     author: "Lawrence Heisler and Gavin Peng"
-     email: "lawrence.heisler@oicr.on.ca and Gavin.Peng@oicr.on.ca"
+     author: "Lawrence Heisler"
+     email: "lawrence.heisler@oicr.on.ca"
      description: "fingerprintsCollector, workflow that generates aligns reads to reference, then creates fingerprints using variousmethods. Output are fingerprints of various types and coverage statistics from the alignment\n##"
      dependencies: [
       {
@@ -132,6 +132,8 @@ workflow hotspotFingerprintCollector {
       }
      ]
      output_meta: {
+       outputVcf: "the crosscheck fingerprint, gzipped vcf file",
+       outputTbi: "index for the vcf fingerprint",
        coverage : "output from samtools coverage, with per chromosome metrics",
        json : "metrics in json format, currently only the mean coverage for the alignment",
        hotspotVcf : "vcf file from GATK haplotype caller on provided hotspots",
@@ -371,91 +373,9 @@ parameter_meta {
  timeout: "Timeout in hours, needed to override imposed limits"
 }
 
-command <<<
- python3 <<CODE
- import gzip
- import re
-
- flags = {"zerocov": "N",  # No coverage
-          "nosnp": "M"}  # no SNP, base matches the reference
-
- # Read lines from the file with reference SNPs
- refFile = gzip.open("~{hotspotSNPs}", mode='r')
- refLines = refFile.readlines()
- refFile.close()
-
- # Retrieve reference SNPsb"abcde".decode("utf-8")
- refs = {}
- for rLine in refLines:
-     refLine = rLine.decode('utf-8')
-     if refLine.strip().startswith('#'):
-         continue
-     temp = refLine.split("\t")
-     if not refs.get(temp[0]):
-         refs[temp[0]] = {}
-     refs[temp[0]][temp[1]] = dict(flag=flags['zerocov'], dbsnp=temp[2], ref=temp[3])
-
- # Read lines from the file with Depth data
- depthFile = open("~{inputCoverage}", mode='r')
- depthLines = depthFile.readlines()
- depthFile.close()
-
- # Retrieve Depth values
- for dLine in depthLines:
-     if dLine.startswith("Target"):
-         continue
-     #temp = dLine.split("\t")
-     temp = dLine.split(",")
-     #coords = temp[0].split(":")
-     coords = temp[0].replace("-",":").split(":")
-     if len(coords) != 2:
-         continue
-     if refs[coords[0]].get(coords[1]) and int(temp[1]) > 0:
-         refs[coords[0]][coords[1]]['flag'] = flags['nosnp']
-     else:
-         refs[coords[0]][coords[1]]['flag'] = flags['zerocov']
-
- # Read lines from the file with Depth data
- callFile = open("~{inputVcf}", mode='r')
- callLines = callFile.readlines()
- callFile.close()
-
- for cLine in callLines:
-     if cLine.startswith('#'):
-         continue
-     temp = cLine.split("\t")
-     if refs[temp[0]] and refs[temp[0]].get(temp[1]):
-         variant = temp[4].upper()
-         if re.fullmatch('[ACGT]{1}', variant) and temp[4] != temp[3]:
-             refs[temp[0]][temp[1]]["flag"] = variant
-         else:
-             refs[temp[0]][temp[1]]["flag"] = flags['nosnp']
-
- # Prepare lines for printing
- finLines = []
- for chr in ["~{sep='\",\"' chroms}"]:
-     if not refs.get(chr):
-         continue
-     for start in sorted(refs[chr].keys()):
-         snp = [refs[chr][start]['ref']]
-         if refs[chr][start]['flag'] == 'M':
-             snp.append(refs[chr][start]['ref'])
-         else:
-             snp.append(refs[chr][start]['flag'])
-         if refs[chr][start]['flag'] == 'N':
-             snp = [""]
-         snpflag = "".join(snp)
-         finLines.append("\t".join([chr, start, refs[chr][start]['dbsnp'], snpflag, refs[chr][start]['flag']]))
-
- # Print into a .fin file
- finHeader = ["CHROM", "POS", "ID", "SNP", "FLAG"]
- f = open("~{sampleID}.fin", "w+")
- f.write('\t'.join(finHeader) + '\n')
- f.write('\n'.join(finLines) + '\n')
- f.close()
- 
- CODE
->>>
+command {
+ python3 /src/fincreator.py ~{inputVcf} ~{inputCoverage} ~{hotspotSNPs} ~{sampleID} ~{sep='\",\"' chroms}
+}
 
 runtime {
   memory:  "~{jobMemory} GB"
