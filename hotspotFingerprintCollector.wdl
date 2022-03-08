@@ -374,7 +374,7 @@ parameter_meta {
 }
 
 command {
- python3 src/fincreator.py ~{inputVcf} ~{inputCoverage} ~{hotspotSNPs} ~{sampleID} ~{sep='\",\"' chroms}
+ python3 /.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/src/fincreator.py ~{inputVcf} ~{inputCoverage} ~{hotspotSNPs} ~{sampleID} ~{sep='\",\"' chroms}
 }
 
 runtime {
