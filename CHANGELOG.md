@@ -21,13 +21,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - The "extractFingerprint" task.
 
-## [1.0.1] 2022-03-8
-### Added
-None
 
-### Changed
-- runFinCreator task command use separate python file in src/
 
-### Removed
-None
 
