@@ -375,7 +375,7 @@ parameter_meta {
 
 
 command <<<
- python3 <<CODE
+    python3 <<CODE
 
     import gzip
     import re
