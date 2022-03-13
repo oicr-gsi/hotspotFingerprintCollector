@@ -67,7 +67,7 @@ for cLine in callLines:
 
 # Prepare lines for printing
 finLines = []
-for chr in [args.chroms]:
+for chr in args.chroms.split(','):
     if not refs.get(chr):
         continue
     for start in sorted(refs[chr].keys()):
