@@ -81,6 +81,14 @@ workflow hotspotFingerprintCollector {
         outputFileNamePrefix = outputFileNamePrefix 
     }
   }  
+  if (!(markDups=="true")){
+    call collectBamIndex {
+      input:
+        inputBam = select_first([bwaMem.bwaMemBam,star.starBam,bam]),
+        inputBai = select_first([bwaMem.bwaMemIndex,star.starIndex,bamIndex]),
+        outputFileNamePrefix = outputFileNamePrefix 
+    }
+  } 
 
    call assessCoverage {
      input:
@@ -92,8 +100,8 @@ workflow hotspotFingerprintCollector {
 
    call generateFingerprint {
      input:
-        inputBam = select_first([markDuplicates.bam,bwaMem.bwaMemBam,star.starBam,bam]),
-        inputBai = select_first([markDuplicates.bamIndex,bwaMem.bwaMemIndex,star.starIndex,bamIndex]),
+        inputBam = select_first([markDuplicates.bam, collectBamIndex.bam]),
+        inputBai = select_first([markDuplicates.bamIndex,collectBamIndex.bamIndex]),
         hotspots = hotspots,
         refFasta = refFasta,
         outputFileNamePrefix = outputFileNamePrefix
@@ -236,6 +244,40 @@ command <<<
  output {
   File bam = "~{outputFileNamePrefix}.dupmarked.bam"
   File bamIndex = "~{outputFileNamePrefix}.dupmarked.bai"
+ }
+}
+
+# ==========================================
+#  Collecting BamIndex
+# ==========================================
+
+task collectBamIndex {
+ input{
+  File inputBam
+  File inputBai
+  String outputFileNamePrefix
+  Int jobMemory = 8
+  Int timeout = 24
+ }
+ parameter_meta {
+  inputBam: "input .bam file"
+  inputBai: "index of the input .bam file"
+  outputFileNamePrefix: "prefix for making names for output files"  
+ }
+ 
+ command {
+   cp ~{inputBam} ~{outputFileNamePrefix}.collected.bam
+   cp ~{inputBai} ~{outputFileNamePrefix}.collected.bai 
+ }
+
+  runtime {
+  memory:  "~{jobMemory} GB"
+  timeout: "~{timeout}"
+ }
+
+ output {
+  File bam = "~{outputFileNamePrefix}.collected.bam"
+  File bamIndex = "~{outputFileNamePrefix}.collected.bai"
  }
 }
 
