@@ -151,7 +151,7 @@ workflow star {
 }
 
 output {
-  File starBam          = runStar.outputBam
+  File starBam          = indexBam.outputBam
   File starIndex        = indexBam.outputBai
   File transcriptomeBam = runStar.transcriptomeBam
   File starChimeric     = runStar.outputChimeric
@@ -320,12 +320,14 @@ parameter_meta {
  modules:   "modules for running indexing job"
  timeout:   "hours before task timeout"
 }
+String resultBam = "~{basename(inputBam, '.bam')}.bam"
 
 command <<<
  java -Xmx~{jobMemory-6}G -jar $PICARD_ROOT/picard.jar BuildBamIndex \
                               VALIDATION_STRINGENCY=LENIENT \
                               OUTPUT="~{basename(inputBam, '.bam')}.bai" \
                               INPUT=~{inputBam}
+ cp ~{inputBam} ~{resultBam}
 >>>
 
 runtime {
@@ -336,6 +338,7 @@ runtime {
 
 output {
   File outputBai = "~{basename(inputBam, '.bam')}.bai"
+  File outputBam = "~{resultBam}"
 }
 
 meta {
