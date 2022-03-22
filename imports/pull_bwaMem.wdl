@@ -208,7 +208,7 @@ workflow bwaMem {
     }
 
     output {
-        File bwaMemBam = bamMerge.outputMergedBam
+        File bwaMemBam = indexBam.outputBam
         File bwaMemIndex = indexBam.outputBai
         File? log = adapterTrimmingLog.summaryLog
         File? cutAdaptAllLogs = adapterTrimmingLog.allLogs
@@ -480,10 +480,12 @@ task indexBam {
     }
 
     String resultBai = "~{basename(inputBam)}.bai"
+    String resultBam = "~{basename(inputBam)}.bam"
 
     command <<<
         set -euo pipefail
         samtools index ~{inputBam} ~{resultBai}
+        cp ~{inputBam} ~{resultBam}
     >>>
 
     runtime {
@@ -494,11 +496,13 @@ task indexBam {
 
     output {
         File outputBai = "~{resultBai}"
+        File outputBam = "~{resultBam}"
     }
 
     meta {
         output_meta: {
-            outputBai: "output index file for bam aligned to genome"
+            outputBai: "output index file for bam aligned to genome",
+            outputBam: "copied input bam file"
         }
     }
 
@@ -617,5 +621,3 @@ task adapterTrimmingLog {
     }
 
 }
- 
-
