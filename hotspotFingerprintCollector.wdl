@@ -126,8 +126,8 @@ workflow hotspotFingerprintCollector {
      }
 
     meta {
-     author: "Lawrence Heisler"
-     email: "lawrence.heisler@oicr.on.ca"
+     author: "Lawrence Heisler and Gavin Peng"
+     email: "lawrence.heisler@oicr.on.ca and gpeng@oicr.on.ca"
      description: "fingerprintsCollector, workflow that generates aligns reads to reference, then creates fingerprints using variousmethods. Output are fingerprints of various types and coverage statistics from the alignment\n##"
      dependencies: [
       {
@@ -266,7 +266,7 @@ task collectBamIndex {
  }
  
  command {
-   cp ~{inputBam} ~{outputFileNamePrefix}.collected.bam
+   ln -s ~{inputBam} ~{outputFileNamePrefix}.collected.bam
    cp ~{inputBai} ~{outputFileNamePrefix}.collected.bai 
  }
 
