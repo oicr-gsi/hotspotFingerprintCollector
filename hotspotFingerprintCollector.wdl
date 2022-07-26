@@ -258,8 +258,6 @@ task collectBamIndex {
   File inputBam
   File inputBai
   String outputFileNamePrefix
-  Int jobMemory = 8
-  Int timeout = 24
  }
  parameter_meta {
   inputBam: "input .bam file"
@@ -269,12 +267,9 @@ task collectBamIndex {
  
  command {
    ln -s ~{inputBam} ~{outputFileNamePrefix}.collected.bam
-   cp ~{inputBai} ~{outputFileNamePrefix}.collected.bai 
+   ln -s ~{inputBai} ~{outputFileNamePrefix}.collected.bai 
  }
 
-  runtime {
-  memory:  "~{jobMemory} GB"
-  timeout: "~{timeout}"
  }
 
  output {
