@@ -31,4 +31,5 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed 
 - None
 
-
+## [1.0.2] - 2022-07-26
+- Adding java option Xmx to make sure markDupilcates command running has enough memory 
