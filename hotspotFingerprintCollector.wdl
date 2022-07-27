@@ -270,7 +270,6 @@ task collectBamIndex {
    ln -s ~{inputBai} ~{outputFileNamePrefix}.collected.bai 
  }
 
- }
 
  output {
   File bam = "~{outputFileNamePrefix}.collected.bam"
