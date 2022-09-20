@@ -1,9 +1,9 @@
 ## Commands
-This section lists command(s) run by WORKFLOW workflow
+This section lists command(s) run by hotspotFingerprintsCollector workflow
 
-* Running WORKFLOW
+* Running hotspotFingerprintsCollector
 
-=== Description here ===.
+=== Commands for downsampling, markDuplicates and generateFingerprint ===.
 
 <<<
  set -euo pipefail
