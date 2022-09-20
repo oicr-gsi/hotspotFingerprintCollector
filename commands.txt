@@ -3,49 +3,54 @@ This section lists command(s) run by hotspotFingerprintsCollector workflow
 
 * Running hotspotFingerprintsCollector
 
-=== Commands for downsampling, markDuplicates and generateFingerprint ===.
 
-<<<
+
+Commands for downsampling
+
+```
  set -euo pipefail
  
- seqtk sample -s 100 ~{fastqR1} ~{maxReads} > ~{fastqR1m}
- gzip ~{fastqR1m}
+ seqtk sample -s 100 INPUT_FASTQ_R1 maxReads > OUTPUT_FATSQ_R1m
+ gzip OUTPUT_FATSQ_R1m
  
- seqtk sample -s 100 ~{fastqR2} ~{maxReads} > ~{fastqR2m}
- gzip ~{fastqR2m}
->>>
-<<<
+ seqtk sample -s 100 INPUT_FASTQ_R2 maxReads > OUTPUT_FATSQ_R2m
+ gzip OUTPUT_FATSQ_R2m
+```
+Command for markDuplicates 
+```
   set -euo pipefail
-  $GATK_ROOT/bin/gatk --java-options "-Xmx~{jobMemory - overhead}G" MarkDuplicates \
-                      -I ~{inputBam} \
-                      --METRICS_FILE ~{outputFileNamePrefix}.dupmetrics \
+  $GATK_ROOT/bin/gatk --java-options "-Xmx [JOB_MEMORY] - [OVERHEAD]G" MarkDuplicates \
+                      -I INPUT_Bam \
+                      --METRICS_FILE OUTPUT_FILE_NAME_PREFIX.dupmetrics \
                       --VALIDATION_STRINGENCY SILENT \
                       --CREATE_INDEX true \
-                      -O ~{outputFileNamePrefix}.dupmarked.bam
->>>
-<<<
+                      -O OUTPUT_FILE_NAME_PREFIX.dupmarked.bam
+```
+
+Commands for generateFingerprint
+```
   set -euo pipefail
-  $SAMTOOLS_ROOT/bin/samtools coverage ~{inputBam} > ~{outputFileNamePrefix}.coverage.txt
-  cat ~{outputFileNamePrefix}.coverage.txt | grep -P "^chr\d+\t|^chrX\t|^chrY\t" | awk '{ space += ($3-$2)+1; bases += $7*($3-$2);} END { print bases/space }' | awk '{print "{\"mean coverage\":" $1 "}"}' > ~{outputFileNamePrefix}.json
->>>
-<<<
+  $SAMTOOLS_ROOT/bin/samtools coverage INPUT_BAM > OUTPUT_FILE_NAME_PREFIX.coverage.txt
+  cat OUTPUT_FILE_NAME_PREFIX.coverage.txt | grep -P "^chr\d+\t|^chrX\t|^chrY\t" | awk '{ space += ($3-$2)+1; bases += $7*($3-$2);} END { print bases/space }' | awk '{print "{\"mean coverage\":" $1 "}"}' > OUTPUT_FILE_NAME_PREFIX.json
+
+
  set -euo pipefail
  $GATK_ROOT/bin/gatk HaplotypeCaller \
-                    -R ~{refFasta} \
-                    -I ~{inputBam} \
-                    -O ~{outputFileNamePrefix}.hotspots.vcf \
+                    -R refFasta \
+                    -I INPUT_BAM \
+                    -O OUTPUT_FILE_NAME_PREFIX.hotspots.vcf \
                     --read-filter CigarContainsNoNOperator \
-                   --stand-call-conf ~{stdCC} \
-                    -L ~{hotspots}
+                    --stand-call-conf stdCC \
+                    -L hotspots
 
- $TABIX_ROOT/bin/bgzip -c ~{outputFileNamePrefix}.hotspots.vcf > ~{outputFileNamePrefix}.hotspots.vcf.gz
- $TABIX_ROOT/bin/tabix -p vcf ~{outputFileNamePrefix}.hotspots.vcf.gz 
+ $TABIX_ROOT/bin/bgzip -c OUTPUT_FILE_NAME_PREFIX.hotspots.vcf > OUTPUT_FILE_NAME_PREFIX.hotspots.vcf.gz
+ $TABIX_ROOT/bin/tabix -p vcf OUTPUT_FILE_NAME_PREFIX.hotspots.vcf.gz 
  
  $GATK_ROOT/bin/gatk DepthOfCoverage \
-                     -R ~{refFasta} \
-                     -I ~{inputBam} \
-                     -O ~{outputFileNamePrefix} \
+                     -R refFasta \
+                     -I INPUT_BAM \
+                     -O OUTPUT_FILE_NAME_PREFIX \
                      --read-filter CigarContainsNoNOperator \
-                     -L ~{hotspots} 
+                     -L hotspots 
  
->>>
+```
