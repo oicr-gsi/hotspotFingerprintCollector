@@ -138,8 +138,62 @@ Output | Type | Description
 `hotspotTbi`|File|index for the vcf hotspot fingerprint
 `hotspotFin`|File|fingerprint Fin file for the provided hotspots
 
+## Commands
+This section lists command(s) run by hotspotFingerprintsCollector workflow
 
-./commands.txt created, please MANUALLY edit it and re-run this script!!!
+* Running hotspotFingerprintsCollector
+
+
+
+Commands for downsampling
+
+```
+ set -euo pipefail
+ 
+ seqtk sample -s 100 INPUT_FASTQ_R1 maxReads > OUTPUT_FATSQ_R1m
+ gzip OUTPUT_FATSQ_R1m
+ 
+ seqtk sample -s 100 INPUT_FASTQ_R2 maxReads > OUTPUT_FATSQ_R2m
+ gzip OUTPUT_FATSQ_R2m
+```
+Command for markDuplicates 
+```
+  set -euo pipefail
+  $GATK_ROOT/bin/gatk --java-options "-Xmx [JOB_MEMORY] - [OVERHEAD]G" MarkDuplicates \
+                      -I INPUT_Bam \
+                      --METRICS_FILE OUTPUT_FILE_NAME_PREFIX.dupmetrics \
+                      --VALIDATION_STRINGENCY SILENT \
+                      --CREATE_INDEX true \
+                      -O OUTPUT_FILE_NAME_PREFIX.dupmarked.bam
+```
+
+Commands for generateFingerprint
+```
+  set -euo pipefail
+  $SAMTOOLS_ROOT/bin/samtools coverage INPUT_BAM > OUTPUT_FILE_NAME_PREFIX.coverage.txt
+  cat OUTPUT_FILE_NAME_PREFIX.coverage.txt | grep -P "^chr\d+\t|^chrX\t|^chrY\t" | awk '{ space += ($3-$2)+1; bases += $7*($3-$2);} END { print bases/space }' | awk '{print "{\"mean coverage\":" $1 "}"}' > OUTPUT_FILE_NAME_PREFIX.json
+
+
+ set -euo pipefail
+ $GATK_ROOT/bin/gatk HaplotypeCaller \
+                    -R refFasta \
+                    -I INPUT_BAM \
+                    -O OUTPUT_FILE_NAME_PREFIX.hotspots.vcf \
+                    --read-filter CigarContainsNoNOperator \
+                    --stand-call-conf stdCC \
+                    -L hotspots
+
+ $TABIX_ROOT/bin/bgzip -c OUTPUT_FILE_NAME_PREFIX.hotspots.vcf > OUTPUT_FILE_NAME_PREFIX.hotspots.vcf.gz
+ $TABIX_ROOT/bin/tabix -p vcf OUTPUT_FILE_NAME_PREFIX.hotspots.vcf.gz 
+ 
+ $GATK_ROOT/bin/gatk DepthOfCoverage \
+                     -R refFasta \
+                     -I INPUT_BAM \
+                     -O OUTPUT_FILE_NAME_PREFIX \
+                     --read-filter CigarContainsNoNOperator \
+                     -L hotspots 
+ 
+```
 ## Support
 
 For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
