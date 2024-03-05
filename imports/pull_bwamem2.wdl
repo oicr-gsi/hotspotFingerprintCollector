@@ -1,6 +1,6 @@
 version 1.0
 
-workflow bwaMem {
+workflow bwamem2 {
     input {
         Int adapterTrimmingLog_timeout = 48
         Int adapterTrimmingLog_jobMemory = 12
@@ -10,16 +10,28 @@ workflow bwaMem {
         Int bamMerge_timeout = 72
         String bamMerge_modules = "samtools/1.9"
         Int bamMerge_jobMemory = 32
-        Int runBwaMem_timeout = 96
-        Int runBwaMem_jobMemory = 32
-        Int runBwaMem_threads = 8
-        String? runBwaMem_addParam
-        String runBwaMem_bwaRef
-        String runBwaMem_modules
+        Int runBwamem2_timeout = 96
+        Int runBwamem2_jobMemory = 32
+        Int runBwamem2_threads = 8
+        String? runBwamem2_addParam
+        String runBwamem2_readGroups
         Int adapterTrimming_timeout = 48
         Int adapterTrimming_jobMemory = 16
         String? adapterTrimming_addParam
+        String adapterTrimming_adapter2 = "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT"
+        String adapterTrimming_adapter1 = "AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC"
+        Int adapterTrimming_trimMinQuality = 0
+        Int adapterTrimming_trimMinLength = 1
+        Int adapterTrimming_umiLength = 5
+        Boolean adapterTrimming_doUMItrim = false
         String adapterTrimming_modules = "cutadapt/1.8.3"
+        Int extractUMIs_timeout = 12
+        Int extractUMIs_jobMemory = 24
+        String extractUMIs_modules = "barcodex-rs/0.1.2 rust/1.45.1"
+        String extractUMIs_pattern2 = "(?P<umi_1>^[ACGT]{3}[ACG])(?P<discard_1>T)|(?P<umi_2>^[ACGT]{3})(?P<discard_2>T)"
+        String extractUMIs_pattern1 = "(?P<umi_1>^[ACGT]{3}[ACG])(?P<discard_1>T)|(?P<umi_2>^[ACGT]{3})(?P<discard_2>T)"
+        String extractUMIs_outputPrefix = "extractUMIs_output"
+        String extractUMIs_umiList = "umiList"
         Int slicerR2_timeout = 48
         Int slicerR2_jobMemory = 16
         String slicerR2_modules = "slicer/0.3.0"
@@ -28,16 +40,15 @@ workflow bwaMem {
         String slicerR1_modules = "slicer/0.3.0"
         Int countChunkSize_timeout = 48
         Int countChunkSize_jobMemory = 16
+        String countChunkSize_modules = "python/3.7"
         File fastqR1
         File? fastqR2
-        String readGroups
-        String outputFileNamePrefix = "output"
+        String outputFileNamePrefix
         Int numChunk = 1
+        Boolean doUMIextract = false
         Boolean doTrim = false
-        Int trimMinLength = 1
-        Int trimMinQuality = 0
-        String adapter1 = "AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC"
-        String adapter2 = "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT"
+        String reference
+        Int? numReads
     }
 
     parameter_meta {
@@ -49,16 +60,28 @@ workflow bwaMem {
         bamMerge_timeout: "Hours before task timeout"
         bamMerge_modules: "Required environment modules"
         bamMerge_jobMemory: "Memory allocated indexing job"
-        runBwaMem_timeout: "Hours before task timeout"
-        runBwaMem_jobMemory: "Memory allocated for this job"
-        runBwaMem_threads: "Requested CPU threads"
-        runBwaMem_addParam: "Additional BWA parameters"
-        runBwaMem_bwaRef: "The reference genome to align the sample with by BWA"
-        runBwaMem_modules: "Required environment modules"
+        runBwamem2_timeout: "Hours before task timeout"
+        runBwamem2_jobMemory: "Memory allocated for this job"
+        runBwamem2_threads: "Requested CPU threads"
+        runBwamem2_addParam: "Additional BWA parameters"
+        runBwamem2_readGroups: "The readgroup information to be injected into the bam header"
         adapterTrimming_timeout: "Hours before task timeout"
         adapterTrimming_jobMemory: "Memory allocated for this job"
         adapterTrimming_addParam: "Additional cutadapt parameters"
+        adapterTrimming_adapter2: "Adapter sequence to trim from read 2"
+        adapterTrimming_adapter1: "Adapter sequence to trim from read 1"
+        adapterTrimming_trimMinQuality: "Minimum quality of read ends to keep"
+        adapterTrimming_trimMinLength: "Minimum length of reads to keep"
+        adapterTrimming_umiLength: "The number of bases to trim when doUMItrim is true. If the given length is positive, the bases are removed from the beginning of each read. If it is negative, the bases are removed from the end"
+        adapterTrimming_doUMItrim: "If true, do umi trimming"
         adapterTrimming_modules: "Required environment modules"
+        extractUMIs_timeout: "Time in hours before task timeout"
+        extractUMIs_jobMemory: "Memory allocated for this job"
+        extractUMIs_modules: "Required environment modules"
+        extractUMIs_pattern2: "UMI RegEx pattern 2"
+        extractUMIs_pattern1: "UMI RegEx pattern 1"
+        extractUMIs_outputPrefix: "Specifies the start of the output files"
+        extractUMIs_umiList: "Reference file with valid UMIs"
         slicerR2_timeout: "Hours before task timeout"
         slicerR2_jobMemory: "Memory allocated for this job"
         slicerR2_modules: "Required environment modules"
@@ -67,26 +90,40 @@ workflow bwaMem {
         slicerR1_modules: "Required environment modules"
         countChunkSize_timeout: "Hours before task timeout"
         countChunkSize_jobMemory: "Memory allocated for this job"
-        fastqR1: "fastq file for read 1"
-        fastqR2: "fastq file for read 2"
-        readGroups: "Complete read group header line"
-        outputFileNamePrefix: "Prefix for output file"
-        numChunk: "number of chunks to split fastq file [1, no splitting]"
-        doTrim: "if true, adapters will be trimmed before alignment"
-        trimMinLength: "minimum length of reads to keep [1]"
-        trimMinQuality: "minimum quality of read ends to keep [0]"
-        adapter1: "adapter sequence to trim from read 1 [AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC]"
-        adapter2: "adapter sequence to trim from read 2 [AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT]"
-
+        countChunkSize_modules: "Required environment modules"
+        fastqR1: "Fastq file for read 1"
+        fastqR2: "Fastq file for read 2"
+        outputFileNamePrefix: "Prefix for output files"
+        numChunk: "Number of chunks to split fastq file [1, no splitting]"
+        doUMIextract: "If true, UMI will be extracted before alignment [false]"
+        doTrim: "If true, adapters will be trimmed before alignment [false]"
+        reference: "The genome reference build. For example: hg19, hg38, mm10"
+        numReads: "Number of reads"
     }
+
+    Map[String,String] bwamem2_modules_by_genome = { 
+    "hg19": "samtools/1.9 bwa-mem2/2.2.1 hg19-bwamem2-index/2.2.1",
+    "hg38": "samtools/1.9 bwa-mem2/2.2.1 hg38-bwamem2-index-with-alt/2.2.1"
+    }
+
+    Map[String,String] bwamem2Ref_by_genome = { 
+    "hg19": "$HG19_BWAMEM2_INDEX_ROOT/hg19_index",
+    "hg38": "$HG38_BWAMEM2_INDEX_WITH_ALT_ROOT/hg38_random.fa"
+    }
+
+
+    String bwamem2_modules = bwamem2_modules_by_genome [ reference ]
+    String bwamem2_ref = bwamem2Ref_by_genome [ reference ]
 
     if (numChunk > 1) {
         call countChunkSize {
             input:
             timeout = countChunkSize_timeout,
             jobMemory = countChunkSize_jobMemory,
+            modules = countChunkSize_modules,
             fastqR1 = fastqR1,
-            numChunk = numChunk
+            numChunk = numChunk,
+            numReads = numReads
         }
     
         call slicer as slicerR1 { 
@@ -125,32 +162,53 @@ workflow bwaMem {
     Array[Pair[File,File?]] outputs = select_first([pairedFastqs, singleFastqs])
 
     scatter (p in outputs) {
+
+        if (doUMIextract) {
+            call extractUMIs { 
+                input:
+                timeout = extractUMIs_timeout,
+                jobMemory = extractUMIs_jobMemory,
+                modules = extractUMIs_modules,
+                pattern2 = extractUMIs_pattern2,
+                pattern1 = extractUMIs_pattern1,
+                outputPrefix = extractUMIs_outputPrefix,
+                umiList = extractUMIs_umiList,
+                fastq1 = p.left,
+                fastq2 = p.right,
+            }
+
+        }
+
         if (doTrim) {
             call adapterTrimming { 
                 input:
                 timeout = adapterTrimming_timeout,
                 jobMemory = adapterTrimming_jobMemory,
                 addParam = adapterTrimming_addParam,
+                adapter2 = adapterTrimming_adapter2,
+                adapter1 = adapterTrimming_adapter1,
+                trimMinQuality = adapterTrimming_trimMinQuality,
+                trimMinLength = adapterTrimming_trimMinLength,
+                umiLength = adapterTrimming_umiLength,
+                doUMItrim = adapterTrimming_doUMItrim,
                 modules = adapterTrimming_modules,
-                fastqR1 = p.left,
-                fastqR2 = p.right,
-                trimMinLength = trimMinLength,
-                trimMinQuality = trimMinQuality,
-                adapter1 = adapter1,
-                adapter2 = adapter2
+                fastqR1 = select_first([extractUMIs.fastqR1, p.left]),
+                fastqR2 = if (defined(fastqR2)) then select_first([extractUMIs.fastqR2, p.right]) else fastqR2,
             }
         }
-        call runBwaMem  { 
+
+
+        call runBwamem2 { 
                 input: 
-                timeout = runBwaMem_timeout,
-                jobMemory = runBwaMem_jobMemory,
-                threads = runBwaMem_threads,
-                addParam = runBwaMem_addParam,
-                bwaRef = runBwaMem_bwaRef,
-                modules = runBwaMem_modules,
-                read1s = select_first([adapterTrimming.resultR1, p.left]),
-                read2s = if (defined(fastqR2)) then select_first([adapterTrimming.resultR2, p.right]) else fastqR2,
-                readGroups = readGroups
+                timeout = runBwamem2_timeout,
+                jobMemory = runBwamem2_jobMemory,
+                threads = runBwamem2_threads,
+                addParam = runBwamem2_addParam,
+                readGroups = runBwamem2_readGroups,
+                read1s = select_first([adapterTrimming.resultR1, extractUMIs.fastqR1, p.left]),
+                read2s = if (defined(fastqR2)) then select_first([adapterTrimming.resultR2, extractUMIs.fastqR2, p.right]) else fastqR2,
+                modules = bwamem2_modules,
+                bwa2Ref = bwamem2_ref
         }    
     }
 
@@ -159,7 +217,7 @@ workflow bwaMem {
         timeout = bamMerge_timeout,
         modules = bamMerge_modules,
         jobMemory = bamMerge_jobMemory,
-        bams = runBwaMem.outputBam,
+        bams = runBwamem2.outputBam,
         outputFileNamePrefix = outputFileNamePrefix
     }
 
@@ -186,11 +244,11 @@ workflow bwaMem {
     meta {
         author: "Xuemei Luo"
         email: "xuemei.luo@oicr.on.ca"
-        description: "BwaMem Workflow version 2.0"
+        description: "This workflow aligns sequence data provided as fastq files against a genomic reference using bwamem2.  Prior to alignment, there are options to remove 5' umi sequence and to trim off 3' sequencing adapter. Readgroup information to be injected into the bam header needs to be provided.  The workflow can also split the input data into a requested number of chunks, align each separately then merge the separate alignments into a single bam file.  This decreases the workflow run time.  Optional bwa mem parameters can be provided to the workflow."
         dependencies: [
         {
-            name: "bwa/0.7.12",
-            url: "https://github.com/lh3/bwa/archive/0.7.12.tar.gz"
+            name: "bwa-mem2/2.2.1",
+            url: "https://github.com/bwa-mem2/bwa-mem2/releases/download/v2.2.1/bwa-mem2-2.2.1_x64-linux.tar.bz2"
         },
         {
             name: "samtools/1.9",
@@ -203,13 +261,37 @@ workflow bwaMem {
         {
             name: "slicer/0.3.0",
             url: "https://github.com/OpenGene/slicer/archive/v0.3.0.tar.gz"
+        },
+        {
+            name: "python/3.7",
+            url: "https://www.python.org"
+        },      
+        {
+            name: "barcodex-rs/0.1.2",
+            url: "https://github.com/oicr-gsi/barcodex-rs/archive/v0.1.2.tar.gz"
+        },
+        {
+            name: "rust/1.2",
+            url: "https://www.rust-lang.org/tools/install"
+        },
+        { 
+          name: "gsi software modules : samtools/1.9 bwa-mem2/2.2.1",
+          url: "https://gitlab.oicr.on.ca/ResearchIT/modulator"
+        },
+        { 
+          name: "gsi hg38 modules : hg38-bwamem2-index-with-alt/2.2.1",
+          url: "https://gitlab.oicr.on.ca/ResearchIT/modulator"
+        },
+        {
+          name: "gsi hg19 modules : hg19-bwamem2-index/2.2.1",
+          url: "https://gitlab.oicr.on.ca/ResearchIT/modulator"
         }
       ]
     }
 
     output {
-        File bwaMemBam = bamMerge.outputMergedBam
-        File bwaMemIndex = indexBam.outputBai
+        File bwamem2Bam = bamMerge.outputMergedBam
+        File bwamem2Index = indexBam.outputBai
         File? log = adapterTrimmingLog.summaryLog
         File? cutAdaptAllLogs = adapterTrimmingLog.allLogs
     }
@@ -220,6 +302,8 @@ task countChunkSize{
     input {
         File fastqR1
         Int numChunk
+        Int? numReads
+        String modules = "python/3.7"
         Int jobMemory = 16
         Int timeout = 48
     }
@@ -227,18 +311,26 @@ task countChunkSize{
     parameter_meta {
         fastqR1: "Fastq file for read 1"
         numChunk: "Number of chunks to split fastq file"
+        numReads: "Number of reads"
+        modules: "Required environment modules"
         jobMemory: "Memory allocated for this job"
         timeout: "Hours before task timeout"
     }
     
     command <<<
         set -euo pipefail
-        totalLines=$(zcat ~{fastqR1} | wc -l)
-        python -c "from math import ceil; print int(ceil(($totalLines/4.0)/~{numChunk})*4)"
+
+        if [ -z "~{numReads}" ]; then
+            totalLines=$(zcat ~{fastqR1} | wc -l)
+        else totalLines=$((~{numReads}*4))
+        fi
+        
+        python3 -c "from math import ceil; print (int(ceil(($totalLines/4.0)/~{numChunk})*4))"
     >>>
     
     runtime {
         memory: "~{jobMemory} GB"
+        modules: "~{modules}"
         timeout: "~{timeout}"
     }
     
@@ -294,23 +386,99 @@ task slicer {
   
 }
 
+
+task extractUMIs {
+        input {
+            String umiList = "umiList"
+            String outputPrefix = "extractUMIs_output"
+            File fastq1
+            File? fastq2
+            String pattern1 = "(?P<umi_1>^[ACGT]{3}[ACG])(?P<discard_1>T)|(?P<umi_2>^[ACGT]{3})(?P<discard_2>T)"
+            String pattern2 = "(?P<umi_1>^[ACGT]{3}[ACG])(?P<discard_1>T)|(?P<umi_2>^[ACGT]{3})(?P<discard_2>T)"
+            String modules = "barcodex-rs/0.1.2 rust/1.45.1"
+            Int jobMemory = 24
+            Int timeout = 12
+        }
+
+        parameter_meta {
+            umiList: "Reference file with valid UMIs"
+            outputPrefix: "Specifies the start of the output files"
+            fastq1: "FASTQ file containing read 1"
+            fastq2: "FASTQ file containing read 2"
+            pattern1: "UMI RegEx pattern 1"
+            pattern2: "UMI RegEx pattern 2"
+            modules: "Required environment modules"
+            jobMemory: "Memory allocated for this job"
+            timeout: "Time in hours before task timeout"
+        }
+
+        command <<<
+            set -euo pipefail
+
+            barcodex-rs --umilist ~{umiList} --prefix ~{outputPrefix} --separator "__" inline \
+            --pattern1 '~{pattern1}' --r1-in ~{fastq1} \
+            ~{if (defined(fastq2)) then "--pattern2 '~{pattern2}' --r2-in ~{fastq2} " else ""}
+
+            cat ~{outputPrefix}_UMI_counts.json > umiCounts.txt
+
+            tr [,] ',\n' < umiCounts.txt | sed 's/[{}]//' > tmp.txt
+            echo "{$(sort -i tmp.txt)}" > new.txt
+            tr '\n' ',' < new.txt | sed 's/,$//' > ~{outputPrefix}_UMI_counts.json
+        >>>
+
+        runtime {
+            modules: "~{modules}"
+            memory: "~{jobMemory} GB"
+            timeout: "~{timeout}"
+        }
+
+        output {
+            File fastqR1 = "~{outputPrefix}_R1.fastq.gz"
+            File? fastqR2 = "~{outputPrefix}_R2.fastq.gz"
+            File discardR1 = "~{outputPrefix}_R1.discarded.fastq.gz"
+            File? discardR2 = "~{outputPrefix}_R2.discarded.fastq.gz"
+            File extractR1 = "~{outputPrefix}_R1.extracted.fastq.gz"
+            File? extractR2 = "~{outputPrefix}_R2.extracted.fastq.gz"
+            File umiCounts = "~{outputPrefix}_UMI_counts.json"
+            File extractionMetrics = "~{outputPrefix}_extraction_metrics.json"
+        }
+
+        meta {
+            output_meta: {
+                fastqR1: "Read 1 fastq file with UMIs extracted",
+                fastqR2: "Read 2 fastq file with UMIs extracted",
+                discardR1: "Reads without a matching UMI pattern in read 1",
+                discardR2: "Reads without a matching UMI pattern in read 2",
+                extractR1: "Extracted reads (UMIs and any spacer sequences) from read 1",
+                extractR2: "Extracted reads (UMIs and any spacer sequences) from read 2",
+                umiCounts: "Record of UMI counts after extraction",
+                extractionMetrics: "Metrics relating to extraction process"
+            }
+        }
+}
+
+
 task adapterTrimming {
     input {
         File fastqR1
         File? fastqR2
         String modules = "cutadapt/1.8.3"
-        Int trimMinLength
-        Int trimMinQuality
-        String adapter1
-        String adapter2
+        Boolean doUMItrim = false
+        Int umiLength = 5
+        Int trimMinLength = 1
+        Int trimMinQuality = 0
+        String adapter1 = "AGATCGGAAGAGCACACGTCTGAACTCCAGTCAC"
+        String adapter2 = "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT" 
         String? addParam
         Int jobMemory = 16
-        Int timeout = 48
+        Int timeout = 48  
     }
     
     parameter_meta {
         fastqR1: "Fastq file for read 1"
         fastqR2: "Fastq file for read 2"
+        doUMItrim: "If true, do umi trimming"
+        umiLength: "The number of bases to trim when doUMItrim is true. If the given length is positive, the bases are removed from the beginning of each read. If it is negative, the bases are removed from the end"
         trimMinLength: "Minimum length of reads to keep"
         trimMinQuality: "Minimum quality of read ends to keep"
         adapter1: "Adapter sequence to trim from read 1"
@@ -328,14 +496,16 @@ task adapterTrimming {
     
     command <<<
         set -euo pipefail
+
         cutadapt -q ~{trimMinQuality} \
-            -m ~{trimMinLength} \
-            -a ~{adapter1}  \
-            -o ~{resultFastqR1} \
-            ~{if (defined(fastqR2)) then "-A ~{adapter2} -p ~{resultFastqR2} " else ""} \
-            ~{addParam} \
-            ~{fastqR1} \
-            ~{fastqR2} > ~{resultLog}
+                -m ~{trimMinLength} \
+                -a ~{adapter1} \
+                -o ~{resultFastqR1} \
+                ~{if (defined(fastqR2)) then "-A ~{adapter2} -p ~{resultFastqR2} " else ""} \
+                ~{if (doUMItrim) then "-u ~{umiLength} -U ~{umiLength} " else ""} \
+                ~{addParam} \
+                ~{fastqR1} \
+                ~{fastqR2} > ~{resultLog}
 
     >>>
     
@@ -358,17 +528,16 @@ task adapterTrimming {
             log: "output adpater trimming log"
         }
     } 
-   
-}    
+}
 
 
-task runBwaMem {
+task runBwamem2 {
     input {
         File read1s
         File? read2s
         String readGroups
         String modules
-        String bwaRef
+        String bwa2Ref
         String? addParam
         Int threads = 8
         Int jobMemory = 32
@@ -378,8 +547,8 @@ task runBwaMem {
     parameter_meta {
         read1s: "Fastq file for read 1"
         read2s: "Fastq file for read 2"
-        readGroups: "Array of readgroup lines"
-        bwaRef: "The reference genome to align the sample with by BWA"
+        readGroups: "The readgroup information to be injected into the bam header"
+        bwa2Ref: "The reference genome to align the sample with by bwa-mem2"
         modules: "Required environment modules"
         addParam: "Additional BWA parameters"
         threads: "Requested CPU threads"
@@ -393,10 +562,10 @@ task runBwaMem {
     command <<<
         set -euo pipefail
         mkdir -p ~{tmpDir}
-        bwa mem -M \
+        bwa-mem2 mem -M \
             -t ~{threads} ~{addParam}  \
             -R  ~{readGroups} \
-            ~{bwaRef} \
+            ~{bwa2Ref} \
             ~{read1s} \
             ~{read2s} \
         | \

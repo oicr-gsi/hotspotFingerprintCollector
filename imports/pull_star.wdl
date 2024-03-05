@@ -6,6 +6,14 @@ struct InputGroup {
   String readGroup
 }
 
+struct GenomeResources {
+    String genomeIndexDir
+    String modules
+    Int? chimOutJunForm
+}
+
+
+
 workflow star {
   input {
     Int indexBam_timeout = 48
@@ -17,11 +25,10 @@ workflow star {
     Float runStar_peOvMMp = 0.1
     Int runStar_chimSegmentReadGapMax = 3
     Int runStar_peOvNbasesMin = 10
-    Int? runStar_chimOutJunForm
     Int runStar_chimNonchimScoDMin = 10
     Int runStar_chimMulmapNmax = 50
     Int runStar_chimScoreSeparation = 1
-    Int runStar_chimScoJunNonGTAG = 0
+    Int runStar_chimScoJunNonGTAG = -1
     Int runStar_chimMulmapScoRan = 3
     Int runStar_alignIntMax = 100000
     Int runStar_alignMatGapMax = 100000
@@ -33,16 +40,15 @@ workflow star {
     Int runStar_uniqMAPQ = 255
     Int runStar_chimScoreDropMax = 30
     Int runStar_outFilterMultimapNmax = 50
-    String runStar_chimOutType = "WithinBAM HardClip Junctions"
-    String runStar_modules = "star/2.7.6a hg38-star-index100/2.7.6a"
+    String runStar_chimOutType = "WithinBAM SoftClip Junctions"
     String? runStar_addParam
     String runStar_genereadSuffix = "ReadsPerGene.out"
     String runStar_chimericjunctionSuffix = "Chimeric.out"
     String runStar_transcriptomeSuffix = "Aligned.toTranscriptome.out"
     String runStar_starSuffix = "Aligned.sortedByCoord.out"
-    String runStar_genomeIndexDir = "$HG38_STAR_INDEX100_ROOT/"
     Array[InputGroup] inputGroups
     String outputFileNamePrefix
+    String reference
   }
 
   scatter (ig in inputGroups) {
@@ -50,6 +56,19 @@ workflow star {
     File read2s       = ig.fastqR2
     String readGroups = ig.readGroup
   }
+
+  Map[String,GenomeResources] resources = {
+    "hg38": {
+      "genomeIndexDir": "$HG38_STAR_INDEX100_ROOT/",
+      "modules": "hg38-star-index100/2.7.10b",
+      "chimOutJunForm": 1
+    },
+    "hg19": {
+      "genomeIndexDir": "$HG19_STAR_INDEX100_ROOT/",
+      "modules": "hg19-star-index100/2.7.10b"
+    }
+  }
+
 
   parameter_meta {
       indexBam_timeout: "hours before task timeout"
@@ -61,7 +80,6 @@ workflow star {
       runStar_peOvMMp: "maximum proportion of mismatched bases in the overlap area"
       runStar_chimSegmentReadGapMax: "maximum gap in the read sequence between chimeric segments"
       runStar_peOvNbasesMin: "minimum number of overlap bases to trigger mates merging and realignment"
-      runStar_chimOutJunForm: "flag to add metadata to chimeric junction output for functionality with starFusion - 1 for metadata, 0 for no metadata"
       runStar_chimNonchimScoDMin: "to trigger chimeric detection, the drop in the best non-chimeric alignment score with respect to the read length has to be greater than this value"
       runStar_chimMulmapNmax: "maximum number of chimeric multi-alignments"
       runStar_chimScoreSeparation: "minimum difference (separation) between the best chimeric score and the next one"
@@ -78,15 +96,14 @@ workflow star {
       runStar_chimScoreDropMax: "max drop (difference) of chimeric score (the sum of scores of allchimeric segments) from the read length"
       runStar_outFilterMultimapNmax: "max number of multiple alignments allowed for a read: if exceeded, the read is considered unmapped"
       runStar_chimOutType: "Indicate where chimeric reads are to be written"
-      runStar_modules: "modules for running STAR"
       runStar_addParam: "Additional STAR parameters"
       runStar_genereadSuffix: "ReadsPerGene file suffix"
       runStar_chimericjunctionSuffix: "Suffix for chimeric junction file"
       runStar_transcriptomeSuffix: "Suffix for transcriptome-aligned file"
       runStar_starSuffix: "Suffix for sorted file"
-      runStar_genomeIndexDir: "Path to STAR index"
     inputGroups: "Array of fastq files to align with STAR and the merged filename"
     outputFileNamePrefix: "Prefix for filename"
+    reference: "Reference id, hg19 or hg38"
   }
 
   call runStar {
@@ -97,7 +114,6 @@ workflow star {
     peOvMMp = runStar_peOvMMp,
     chimSegmentReadGapMax = runStar_chimSegmentReadGapMax,
     peOvNbasesMin = runStar_peOvNbasesMin,
-    chimOutJunForm = runStar_chimOutJunForm,
     chimNonchimScoDMin = runStar_chimNonchimScoDMin,
     chimMulmapNmax = runStar_chimMulmapNmax,
     chimScoreSeparation = runStar_chimScoreSeparation,
@@ -114,16 +130,17 @@ workflow star {
     chimScoreDropMax = runStar_chimScoreDropMax,
     outFilterMultimapNmax = runStar_outFilterMultimapNmax,
     chimOutType = runStar_chimOutType,
-    modules = runStar_modules,
     addParam = runStar_addParam,
     genereadSuffix = runStar_genereadSuffix,
     chimericjunctionSuffix = runStar_chimericjunctionSuffix,
     transcriptomeSuffix = runStar_transcriptomeSuffix,
     starSuffix = runStar_starSuffix,
-    genomeIndexDir = runStar_genomeIndexDir,
     read1s = read1s,
     read2s = read2s,
     readGroups = readGroups,
+    genomeIndexDir = resources [reference].genomeIndexDir,
+    modules = resources [reference].modules,
+    chimOutJunForm = resources [reference].chimOutJunForm,
     outputFileNamePrefix = outputFileNamePrefix
   }
 
@@ -137,10 +154,10 @@ workflow star {
   meta {
    author: "Peter Ruzanov, Alexander Fortuna"
    email: "peter.ruzanov@oicr.on.ca, alexander.fortuna@oicr.on.ca"
-   description: "STAR 2.1"
+   description: "STAR 2.3"
    dependencies: [
       {
-        name: "star/2.7.6a",
+        name: "star/2.7.10b",
         url: "https://github.com/alexdobin/STAR"
       },
       {
@@ -167,15 +184,15 @@ input {
   Array[File]+ read1s
   Array[File]+ read2s
   Array[String]+ readGroups
-  String genomeIndexDir = "$HG38_STAR_INDEX100_ROOT/"
+  String genomeIndexDir 
   String outputFileNamePrefix
   String starSuffix = "Aligned.sortedByCoord.out"
   String transcriptomeSuffix = "Aligned.toTranscriptome.out"
   String chimericjunctionSuffix = "Chimeric.out"
   String genereadSuffix = "ReadsPerGene.out"
   String? addParam
-  String modules = "star/2.7.6a hg38-star-index100/2.7.6a"
-  String chimOutType = "WithinBAM HardClip Junctions"
+  String modules 
+  String chimOutType = "WithinBAM SoftClip Junctions"
   Int outFilterMultimapNmax = 50
   Int chimScoreDropMax = 30
   Int uniqMAPQ = 255
@@ -187,7 +204,7 @@ input {
   Int alignMatGapMax = 100000
   Int alignIntMax = 100000
   Int chimMulmapScoRan = 3
-  Int chimScoJunNonGTAG = 0
+  Int chimScoJunNonGTAG = -1
   Int chimScoreSeparation = 1
   Int chimMulmapNmax = 50
   Int chimNonchimScoDMin = 10
@@ -263,12 +280,12 @@ command <<<
       --chimMultimapScoreRange ~{chimMulmapScoRan} \
       --chimScoreJunctionNonGTAG ~{chimScoJunNonGTAG} \
       --chimMultimapNmax ~{chimMulmapNmax} \
-      --chimNonchimScoreDropMin ~{chimNonchimScoDMin} \
-      ~{"--chimOutJunctionFormat " + chimOutJunForm} \
+      --chimNonchimScoreDropMin ~{chimNonchimScoDMin} ~{"--chimOutJunctionFormat " + chimOutJunForm} \
       --peOverlapNbasesMin ~{peOvNbasesMin} \
       --peOverlapMMp ~{peOvMMp} \
       --outFilterMultimapNmax ~{outFilterMultimapNmax} \
-      --runThreadN ~{threads} --chimOutType ~{chimOutType} \
+      --runThreadN ~{threads} \
+      --chimOutType ~{chimOutType} \
       --chimScoreDropMax ~{chimScoreDropMax} \
       --chimScoreSeparation ~{chimScoreSeparation} \
       --chimSegmentReadGapMax ~{chimSegmentReadGapMax} ~{addParam}
@@ -295,7 +312,7 @@ output {
 meta {
   output_meta: {
     outputBam:        "Output bam aligned to genome",
-      outputChimeric:   "Output chimeric junctions file",
+    outputChimeric:   "Output chimeric junctions file",
     transcriptomeBam: "Output bam aligned to transcriptome",
     geneReads:        "Output raw read counts per transcript"
   }

@@ -1,6 +1,6 @@
 version 1.0
 
-import "imports/pull_bwaMem.wdl" as bwaMem
+import "imports/pull_bwamem2.wdl" as bwaMem
 import "imports/pull_star.wdl" as star
 
 struct InputGroup {
@@ -15,6 +15,7 @@ workflow hotspotFingerprintCollector {
         File? fastqR2
         File? bam
         File? bamIndex
+        String reference
         String inputType
         String aligner
         String markDups
@@ -29,6 +30,7 @@ workflow hotspotFingerprintCollector {
         fastqR2: "fastq file for read 2"
         bam: "bam file"
         bamIndex: "bam index file"
+        reference: "Supported reference id, hg19 or hg38"
         inputType: "one of either fastq or bam"
         aligner : "aligner to use for fastq input, either bwa or star"
         markDups : "should the alignment be duplicate marked?, generally yes"
@@ -49,12 +51,13 @@ workflow hotspotFingerprintCollector {
      }
 
      if(aligner=="bwa"){
-       call bwaMem.bwaMem {
+       call bwaMem.bwamem2 {
          input:
            fastqR1 = select_first([downsample.fastqR1mod,fastqR1]),
            fastqR2 = select_first([downsample.fastqR2mod,fastqR2]),
            outputFileNamePrefix = outputFileNamePrefix,
-           readGroups = "'@RG\\tID:CROSSCHECK\\tSM:SAMPLE'",
+           reference = reference,
+           runBwamem2_readGroups = "'@RG\\tID:CROSSCHECK\\tSM:SAMPLE'",
            doTrim = false
         }
       }
@@ -69,6 +72,7 @@ workflow hotspotFingerprintCollector {
          input:
            inputGroups = [ starInput ],
            outputFileNamePrefix = outputFileNamePrefix,
+           reference = reference,
            runStar_chimOutType = "Junctions"
        }
      }
@@ -76,24 +80,24 @@ workflow hotspotFingerprintCollector {
   if(markDups=="true"){
     call markDuplicates {
       input :
-        inputBam = select_first([bwaMem.bwaMemBam,star.starBam,bam]),
-        inputBai = select_first([bwaMem.bwaMemIndex,star.starIndex,bamIndex]),
+        inputBam = select_first([bwamem2.bwamem2Bam,star.starBam,bam]),
+        inputBai = select_first([bwamem2.bwamem2Index,star.starIndex,bamIndex]),
         outputFileNamePrefix = outputFileNamePrefix 
     }
   }  
   if (!(markDups=="true")){
     call collectBamIndex {
       input:
-        inputBam = select_first([bwaMem.bwaMemBam,star.starBam,bam]),
-        inputBai = select_first([bwaMem.bwaMemIndex,star.starIndex,bamIndex]),
+        inputBam = select_first([bwamem2.bwamem2Bam,star.starBam,bam]),
+        inputBai = select_first([bwamem2.bwamem2Index,star.starIndex,bamIndex]),
         outputFileNamePrefix = outputFileNamePrefix 
     }
   } 
 
    call assessCoverage {
      input:
-        inputBam = select_first([markDuplicates.bam,bwaMem.bwaMemBam,star.starBam,bam]),
-        inputBai = select_first([markDuplicates.bamIndex,bwaMem.bwaMemIndex,star.starIndex,bamIndex]),
+        inputBam = select_first([markDuplicates.bam,bwamem2.bwamem2Bam,star.starBam,bam]),
+        inputBai = select_first([markDuplicates.bamIndex,bwamem2.bwamem2Index,star.starIndex,bamIndex]),
         outputFileNamePrefix = outputFileNamePrefix  
    }
    
