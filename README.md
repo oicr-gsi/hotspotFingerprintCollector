@@ -29,7 +29,6 @@ Parameter|Value|Description
 `markDups`|String|should the alignment be duplicate marked?, generally yes
 `outputFileNamePrefix`|String|Optional output prefix for the output
 `refFasta`|String|Path to the reference fasta file
-`haplotypeMap`|String|Path to the gzipped hotspot vcf file
 `hotspots`|String|hotspot file for generateFingerprints
 `downsample.modules`|String|Names and versions of modules
 `bwaMem.runBwaMem_bwaRef`|String|The reference genome to align the sample with by BWA
@@ -116,7 +115,8 @@ Parameter|Value|Default|Description
 `star.runStar_transcriptomeSuffix`|String|"Aligned.toTranscriptome.out"|Suffix for transcriptome-aligned file
 `star.runStar_starSuffix`|String|"Aligned.sortedByCoord.out"|Suffix for sorted file
 `star.runStar_genomeIndexDir`|String|"$HG38_STAR_INDEX100_ROOT/"|Path to STAR index
-`markDuplicates.jobMemory`|Int|8|memory allocated for Job
+`markDuplicates.jobMemory`|Int|24|memory allocated for Job
+`markDuplicates.overhead`|Int|6|memory allocated to overhead of the job other than used in markDuplicates command
 `markDuplicates.timeout`|Int|24|Timeout in hours, needed to override imposed limits
 `assessCoverage.jobMemory`|Int|8|memory allocated for Job
 `assessCoverage.timeout`|Int|24|Timeout in hours, needed to override imposed limits
@@ -130,70 +130,75 @@ Parameter|Value|Default|Description
 
 ### Outputs
 
-Output | Type | Description
----|---|---
-`coverage`|File|output from samtools coverage, with per chromosome metrics
-`json`|File|metrics in json format, currently only the mean coverage for the alignment
-`hotspotVcf`|File|vcf file from GATK haplotype caller on provided hotspots
-`hotspotTbi`|File|index for the vcf hotspot fingerprint
-`hotspotFin`|File|fingerprint Fin file for the provided hotspots
+Output | Type | Description | Labels
+---|---|---|---
+`coverage`|File|output from samtools coverage, with per chromosome metrics|vidarr_label: coverage 
+`json`|File|metrics in json format, currently only the mean coverage for the alignment|vidarr_label: json 
+`hotspotVcf`|File|vcf file from GATK haplotype caller on provided hotspots|vidarr_label: hotspotVcf 
+`hotspotTbi`|File|index for the vcf hotspot fingerprint|vidarr_label: hotspotTbi 
+`hotspotFin`|File|fingerprint Fin file for the provided hotspots|vidarr_label: hotspotFin 
+
 
 ## Commands
 This section lists command(s) run by hotspotFingerprintsCollector workflow
-
+ 
 * Running hotspotFingerprintsCollector
-
-
-
-Commands for downsampling
-
-```
- set -euo pipefail
  
- seqtk sample -s 100 INPUT_FASTQ_R1 maxReads > OUTPUT_FATSQ_R1m
- gzip OUTPUT_FATSQ_R1m
+
  
- seqtk sample -s 100 INPUT_FASTQ_R2 maxReads > OUTPUT_FATSQ_R2m
- gzip OUTPUT_FATSQ_R2m
-```
-Command for markDuplicates 
+### Commands for downsampling
+ 
 ```
   set -euo pipefail
-  $GATK_ROOT/bin/gatk --java-options "-Xmx [JOB_MEMORY] - [OVERHEAD]G" MarkDuplicates \
-                      -I INPUT_Bam \
-                      --METRICS_FILE OUTPUT_FILE_NAME_PREFIX.dupmetrics \
-                      --VALIDATION_STRINGENCY SILENT \
-                      --CREATE_INDEX true \
-                      -O OUTPUT_FILE_NAME_PREFIX.dupmarked.bam
+  
+  seqtk sample -s 100 INPUT_FASTQ_R1 maxReads > OUTPUT_FATSQ_R1m
+  gzip OUTPUT_FATSQ_R1m
+  
+  seqtk sample -s 100 INPUT_FASTQ_R2 maxReads > OUTPUT_FATSQ_R2m
+  gzip OUTPUT_FATSQ_R2m
 ```
 
-Commands for generateFingerprint
+### Command for markDuplicates 
+
 ```
-  set -euo pipefail
-  $SAMTOOLS_ROOT/bin/samtools coverage INPUT_BAM > OUTPUT_FILE_NAME_PREFIX.coverage.txt
-  cat OUTPUT_FILE_NAME_PREFIX.coverage.txt | grep -P "^chr\d+\t|^chrX\t|^chrY\t" | awk '{ space += ($3-$2)+1; bases += $7*($3-$2);} END { print bases/space }' | awk '{print "{\"mean coverage\":" $1 "}"}' > OUTPUT_FILE_NAME_PREFIX.json
-
-
- set -euo pipefail
- $GATK_ROOT/bin/gatk HaplotypeCaller \
-                    -R refFasta \
-                    -I INPUT_BAM \
-                    -O OUTPUT_FILE_NAME_PREFIX.hotspots.vcf \
-                    --read-filter CigarContainsNoNOperator \
-                    --stand-call-conf stdCC \
-                    -L hotspots
-
- $TABIX_ROOT/bin/bgzip -c OUTPUT_FILE_NAME_PREFIX.hotspots.vcf > OUTPUT_FILE_NAME_PREFIX.hotspots.vcf.gz
- $TABIX_ROOT/bin/tabix -p vcf OUTPUT_FILE_NAME_PREFIX.hotspots.vcf.gz 
+   set -euo pipefail
+   $GATK_ROOT/bin/gatk --java-options "-Xmx [JOB_MEMORY] - [OVERHEAD]G" MarkDuplicates \
+                       -I INPUT_Bam \
+                       --METRICS_FILE OUTPUT_FILE_NAME_PREFIX.dupmetrics \
+                       --VALIDATION_STRINGENCY SILENT \
+                       --CREATE_INDEX true \
+                       -O OUTPUT_FILE_NAME_PREFIX.dupmarked.bam
+```
  
- $GATK_ROOT/bin/gatk DepthOfCoverage \
+### Commands for generateFingerprint
+
+```
+   set -euo pipefail
+   $SAMTOOLS_ROOT/bin/samtools coverage INPUT_BAM > OUTPUT_FILE_NAME_PREFIX.coverage.txt
+   cat OUTPUT_FILE_NAME_PREFIX.coverage.txt | grep -P "^chr\d+\t|^chrX\t|^chrY\t" | awk '{ space += ($3-$2)+1; bases += $7*($3-$2);} END { print bases/space }' | awk '{print "{\"mean coverage\":" $1 "}"}' > OUTPUT_FILE_NAME_PREFIX.json
+ 
+ 
+  set -euo pipefail
+  $GATK_ROOT/bin/gatk HaplotypeCaller \
                      -R refFasta \
                      -I INPUT_BAM \
-                     -O OUTPUT_FILE_NAME_PREFIX \
+                     -O OUTPUT_FILE_NAME_PREFIX.hotspots.vcf \
                      --read-filter CigarContainsNoNOperator \
-                     -L hotspots 
+                     --stand-call-conf stdCC \
+                     -L hotspots
  
+  $TABIX_ROOT/bin/bgzip -c OUTPUT_FILE_NAME_PREFIX.hotspots.vcf > OUTPUT_FILE_NAME_PREFIX.hotspots.vcf.gz
+  $TABIX_ROOT/bin/tabix -p vcf OUTPUT_FILE_NAME_PREFIX.hotspots.vcf.gz 
+  
+  $GATK_ROOT/bin/gatk DepthOfCoverage \
+                      -R refFasta \
+                      -I INPUT_BAM \
+                      -O OUTPUT_FILE_NAME_PREFIX \
+                      --read-filter CigarContainsNoNOperator \
+                      -L hotspots 
+  
 ```
+
 ## Support
 
 For support, please file an issue on the [Github project](https://github.com/oicr-gsi) or send an email to gsi@oicr.on.ca .
