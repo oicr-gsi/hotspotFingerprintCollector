@@ -139,13 +139,28 @@ workflow hotspotFingerprintCollector {
         url: "http://www.htslib.org"
       }
      ]
-     output_meta: {
-       coverage : "output from samtools coverage, with per chromosome metrics",
-       json : "metrics in json format, currently only the mean coverage for the alignment",
-       hotspotVcf : "vcf file from GATK haplotype caller on provided hotspots",
-       hotspotTbi : "index for the vcf hotspot fingerprint",
-       hotspotFin : "fingerprint Fin file for the provided hotspots"
-     }
+    output_meta: {
+    coverage : {
+        description: "output from samtools coverage, with per chromosome metrics",
+        vidarr_label: "coverage "
+    },
+    json : {
+        description: "metrics in json format, currently only the mean coverage for the alignment",
+        vidarr_label: "json "
+    },
+    hotspotVcf : {
+        description: "vcf file from GATK haplotype caller on provided hotspots",
+        vidarr_label: "hotspotVcf "
+    },
+    hotspotTbi : {
+        description: "index for the vcf hotspot fingerprint",
+        vidarr_label: "hotspotTbi "
+    },
+    hotspotFin : {
+        description: "fingerprint Fin file for the provided hotspots",
+        vidarr_label: "hotspotFin "
+    }
+}
   }
 
 }
