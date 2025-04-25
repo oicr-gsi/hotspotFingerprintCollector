@@ -128,7 +128,7 @@ workflow hotspotFingerprintCollector {
     meta {
      author: "Lawrence Heisler and Gavin Peng"
      email: "lawrence.heisler@oicr.on.ca and gpeng@oicr.on.ca"
-     description: "fingerprintsCollector, workflow that generates aligns reads to reference, then creates fingerprints using variousmethods. Output are fingerprints of various types and coverage statistics from the alignment\n##"
+     description: "fingerprintsCollector, workflow that generates aligns reads to reference, then creates fingerprints using GATK HaplotypeCaller with pre-selected set of variants to check against. Output are fingerprints in custom .fin format and coverage statistics from the alignment. The outputs are meant to be analyzed by the downstream processes.\n"
      dependencies: [
       {
         name: "gatk/4.2.0.0",
