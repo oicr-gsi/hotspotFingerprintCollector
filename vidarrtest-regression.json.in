@@ -1,11 +1,11 @@
 [
   {
-    "id": "TEST_GSICAPBENCH_1196_FASTQ_INPUT",
+    "id": "TEST_GSICAPBENCH_FASTQ_INPUT",
     "description": "runs the hotspotFingerprintCollector workflow on a WG library using hg38, with fastq as input",
     "arguments": {
       "hotspotFingerprintCollector.fastqR1": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/GSICAPBENCH_1196_Ly_R_PE_454_WG_GSICAPBENCH220224_200403_A00469_0097_AH7TL7DSXY_1_TGCGTACA-TTCTCATA_R1.fastq.gz",
+          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/test_inputs/Test_R1.fastq.gz",
           "externalIds": [
             {
               "id": "TEST",
@@ -17,7 +17,7 @@
       },
       "hotspotFingerprintCollector.fastqR2": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/GSICAPBENCH_1196_Ly_R_PE_454_WG_GSICAPBENCH220224_200403_A00469_0097_AH7TL7DSXY_1_TGCGTACA-TTCTCATA_R2.fastq.gz",
+          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/test_inputs/Test_R2.fastq.gz",
           "externalIds": [
             {
               "id": "TEST",
@@ -28,7 +28,7 @@
         "type": "EXTERNAL"
       },
       "hotspotFingerprintCollector.inputType": "fastq",
-      "hotspotFingerprintCollector.outputFileNamePrefix": "TEST_GSICAPBENCH_1196_FASTQ",
+      "hotspotFingerprintCollector.outputFileNamePrefix": "TEST_GSICAPBENCH_FASTQ",
       "hotspotFingerprintCollector.aligner": "bwa",
       "hotspotFingerprintCollector.markDups" : "true",
       "hotspotFingerprintCollector.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg38-p12/hg38_random.fa",
@@ -131,7 +131,7 @@
       "hotspotFingerprintCollector.coverage": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_1196_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
@@ -139,7 +139,7 @@
       "hotspotFingerprintCollector.json": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_1196_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
@@ -147,7 +147,7 @@
       "hotspotFingerprintCollector.hotspotVcf": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_1196_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
@@ -155,7 +155,7 @@
       "hotspotFingerprintCollector.hotspotTbi": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_1196_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
@@ -163,7 +163,7 @@
       "hotspotFingerprintCollector.hotspotFin": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_1196_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
@@ -173,18 +173,18 @@
       {
         "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
         "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-        "output_metrics": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/output_expectation/TEST_GSICAPBENCH_1196_FASTQ_INPUT.metrics",
+        "output_metrics": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/output_metrics/workflow_test_01.metrics",
         "type": "script"
       }
     ]
   },
   {
-    "id": "TEST_GSICAPBENCH_1196_FASTQ_INPUT_MAXREADS",
+    "id": "TEST_GSICAPBENCH_FASTQ_INPUT_MAXREADS",
     "description": "runs the hotspotFingerprintCollector workflow on a WG library using hg38, with fastq as input, downsample to 5000000 reads",
     "arguments": {
       "hotspotFingerprintCollector.fastqR1": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/GSICAPBENCH_1196_Ly_R_PE_454_WG_GSICAPBENCH220224_200403_A00469_0097_AH7TL7DSXY_1_TGCGTACA-TTCTCATA_R1.fastq.gz",
+          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/test_inputs/Test_R1.fastq.gz",
           "externalIds": [
             {
               "id": "TEST",
@@ -196,7 +196,7 @@
       },
       "hotspotFingerprintCollector.fastqR2": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/GSICAPBENCH_1196_Ly_R_PE_454_WG_GSICAPBENCH220224_200403_A00469_0097_AH7TL7DSXY_1_TGCGTACA-TTCTCATA_R2.fastq.gz",
+          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/test_inputs/Test_R2.fastq.gz",
           "externalIds": [
             {
               "id": "TEST",
@@ -207,7 +207,7 @@
         "type": "EXTERNAL"
       },
       "hotspotFingerprintCollector.inputType": "fastq",
-      "hotspotFingerprintCollector.outputFileNamePrefix": "GSICAPBENCH_1196_FASTQ",
+      "hotspotFingerprintCollector.outputFileNamePrefix": "GSICAPBENCH_FASTQ",
       "hotspotFingerprintCollector.aligner": "bwa",
       "hotspotFingerprintCollector.markDups" : "true",
       "hotspotFingerprintCollector.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg38-p12/hg38_random.fa",
@@ -310,7 +310,7 @@
       "hotspotFingerprintCollector.coverage": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_1196_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
@@ -318,7 +318,7 @@
       "hotspotFingerprintCollector.json": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_1196_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
@@ -326,7 +326,7 @@
       "hotspotFingerprintCollector.hotspotVcf": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_1196_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
@@ -334,7 +334,7 @@
       "hotspotFingerprintCollector.hotspotTbi": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_1196_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
@@ -342,7 +342,7 @@
       "hotspotFingerprintCollector.hotspotFin": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_1196_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
@@ -352,19 +352,19 @@
       {
         "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
         "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-        "output_metrics": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/output_expectation/TEST_GSICAPBENCH_1196_FASTQ_INPUT_MAXREADS.metrics",
+        "output_metrics": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/output_metrics/workflow_test_02.metrics",
         "type": "script"
       }
     ]
   },
 
   {
-    "id": "TEST_GSICAPBENCH_1196_BAM_INPUT",
+    "id": "TEST_GSICAPBENCH_BAM_INPUT",
     "description": "runs the hotspotFingerprintCollector workflow on a WG library using hg38, with bam files as input",
     "arguments": {
       "hotspotFingerprintCollector.bam": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/GSICAPBENCH_1196_Ly_R_PE_454_WG_GSICAPBENCH220224_200403_A00469_0097_AH7TL7DSXY_1_TGCGTACA-TTCTCATA.bam",
+          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/test_inputs/Test.bam",
           "externalIds": [
             {
               "id": "TEST",
@@ -376,7 +376,7 @@
       },
       "hotspotFingerprintCollector.bamIndex": {
         "contents": {
-          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/input_data/GSICAPBENCH_1196_Ly_R_PE_454_WG_GSICAPBENCH220224_200403_A00469_0097_AH7TL7DSXY_1_TGCGTACA-TTCTCATA.bam.bai",
+          "configuration": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/test_inputs/Test.bam.bai",
           "externalIds": [
             {
               "id": "TEST",
@@ -387,7 +387,7 @@
         "type": "EXTERNAL"
       },
       "hotspotFingerprintCollector.inputType": "bam",
-      "hotspotFingerprintCollector.outputFileNamePrefix": "TEST_GSICAPBENCH_1196_BAM",
+      "hotspotFingerprintCollector.outputFileNamePrefix": "TEST_GSICAPBENCH_BAM",
       "hotspotFingerprintCollector.aligner": "bwa",
       "hotspotFingerprintCollector.markDups" : "true",
       "hotspotFingerprintCollector.refFasta": "/.mounts/labs/gsi/modulator/sw/data/hg38-p12/hg38_random.fa",
@@ -490,7 +490,7 @@
       "hotspotFingerprintCollector.coverage": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_1196_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
@@ -498,7 +498,7 @@
       "hotspotFingerprintCollector.json": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_1196_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
@@ -506,7 +506,7 @@
       "hotspotFingerprintCollector.hotspotVcf": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_1196_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
@@ -514,7 +514,7 @@
       "hotspotFingerprintCollector.hotspotTbi": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_1196_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
@@ -522,7 +522,7 @@
       "hotspotFingerprintCollector.hotspotFin": {
         "contents": [
           {
-            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_1196_FASTQ@JENKINSID@"
+            "outputDirectory": "@SCRATCH@/@DATE@_Workflow_hotspotFingerprintCollector_TEST_GSICAPBENCH_FASTQ@JENKINSID@"
           }
         ],
         "type": "ALL"
@@ -532,7 +532,7 @@
       {
         "metrics_calculate": "@CHECKOUT@/tests/calculate.sh",
         "metrics_compare": "@CHECKOUT@/tests/compare.sh",
-        "output_metrics": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/output_expectation/TEST_GSICAPBENCH_1196_BAM_INPUT.metrics",
+        "output_metrics": "/.mounts/labs/gsi/testdata/hotspotFingerprintCollector/output_metrics/workflow_test_03.metrics",
         "type": "script"
       }
     ]
